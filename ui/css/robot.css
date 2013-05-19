@@ -1,0 +1,69 @@
+@import url( reset.css );
+
+
+body {
+	background-color:#ccc;
+}
+
+.mainContainer {
+	width:500px;
+	margin:0 auto;
+}
+header {
+	overflow:hidden;
+}
+header div {
+	float:left;
+}
+
+
+
+footer {
+	overflow:hidden;
+}
+
+footer .trackerController {
+	float:left;
+}
+footer .driverController {
+	float:right;
+}
+
+.controller {
+	position:relative;
+	width:200px;
+	height:200px;
+	
+	
+	border:1px solid black;
+}
+.controller .btn {
+	position:absolute;
+	border:4px solid #ddd;
+	padding:20px;
+	font-size:14px;
+}
+
+.controller .btn.up {
+	top:0;
+	left:50%;
+}
+.controller .btn.down {
+	bottom:0;
+	left:50%;
+}
+.controller .btn.left {
+	top:50%;
+	left:0;
+}
+.controller .btn.right {
+	top:50%;
+	right:0;
+}
+
+
+
+
+
+
+
