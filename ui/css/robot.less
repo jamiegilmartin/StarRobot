@@ -1,0 +1,77 @@
+@import url( 'reset.css' );
+
+
+body {
+	font-family:arial;
+	font-size:10px;
+	background-color:#ccc;
+}
+
+.mainContainer {
+	width:75em;
+	margin:0 auto;
+}
+header {
+	overflow:hidden;
+	div {
+		float:left;
+	}
+	
+}
+
+
+footer {
+	overflow:hidden;
+	
+	.trackerController {
+		float:left;
+	}
+	.driverController {
+		float:right;
+	}
+}
+
+
+
+.controller {
+	position:relative;
+	width:20em;
+	height:20em;
+	font-size:1.2em;
+	border:1px dotted black;
+}
+.controller .btn {
+	position:absolute;
+	border:4px solid #ddd;
+	padding:2em;
+	/*54x58*/
+}
+.controller .btn:hover,
+.controller .btn.on  {
+	background-color:#ddd;
+	color:#00aeef;
+}
+
+.controller .btn.up {
+	top:0;
+	left:38%;
+}
+.controller .btn.down {
+	bottom:0;
+	left:38%;
+}
+.controller .btn.left {
+	top:37%;
+	left:0;
+}
+.controller .btn.right {
+	top:37%;
+	right:0;
+}
+
+
+
+
+
+
+
