@@ -1,60 +1,107 @@
-@import url('reset.css');
+@import url( 'reset.css' );
+
+
 body {
-  font-family: arial;
-  font-size: 10px;
-  background-color: #ccc;
+	font-family:arial;
+	font-size:10px;
+	background-color:#ccc;
 }
+
 .mainContainer {
-  width: 75em;
-  margin: 0 auto;
+	width:75em;
+	margin:0 auto;
+	overflow:hidden;
+	border:1px dotted red;
 }
-header {
-  overflow: hidden;
+
+
+header {  
+	
+	overflow:hidden;
+	div {
+		float:left;
+	}
+	
 }
 header div {
-  float: left;
+	float:left;
+}
+
+/*.battery*/
+.battery {
+	padding-right:1em;
+}
+.battery p {
+		
+}
+.battery ul {
+	overflow:hidden;
+	height:1.5em;
+	width:5em;
+	padding:0 1% 0 2%;
+	border:1px solid #00aeef;
+}
+.battery ul li {
+	float:left;
+	width:1em;
+	height:100%;
+	padding:2% 0 0 1%;
+}
+.battery ul li div {
+	width:90%;
+	height:90%;
+	background:#838dee;
 }
 footer {
-  overflow: hidden;
+	overflow:hidden;
 }
 footer .trackerController {
-  float: left;
+	float:left;
 }
 footer .driverController {
-  float: right;
+	float:right;
 }
+
+
 .controller {
-  position: relative;
-  width: 20em;
-  height: 20em;
-  font-size: 1.2em;
-  border: 1px dotted black;
+	position:relative;
+	width:20em;
+	height:20em;
+	font-size:1.2em;
+	border:1px dotted black;
 }
 .controller .btn {
-  position: absolute;
-  border: 4px solid #ddd;
-  padding: 2em;
-  /*54x58*/
-
+	position:absolute;
+	border:4px solid #ddd;
+	padding:2em;
+	/*54x58*/
 }
 .controller .btn:hover,
-.controller .btn.on {
-  background-color: #ddd;
-  color: #00aeef;
+.controller .btn.on  {
+	background-color:#ddd;
+	color:#00aeef;
 }
+
 .controller .btn.up {
-  top: 0;
-  left: 38%;
+	top:0;
+	left:38%;
 }
 .controller .btn.down {
-  bottom: 0;
-  left: 38%;
+	bottom:0;
+	left:38%;
 }
 .controller .btn.left {
-  top: 37%;
-  left: 0;
+	top:37%;
+	left:0;
 }
 .controller .btn.right {
-  top: 37%;
-  right: 0;
+	top:37%;
+	right:0;
 }
+
+
+
+
+
+
+
