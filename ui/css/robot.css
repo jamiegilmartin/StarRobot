@@ -1,107 +1,155 @@
-@import url( 'reset.css' );
-
-
+@import url('reset.css');
+/*.less vars*/
 body {
-	font-family:arial;
-	font-size:10px;
-	background-color:#ccc;
+  font-family: arial;
+  font-size: 10px;
+  background-color: #ccc;
 }
-
+#canvas {
+  position: absolute;
+  width: 96em;
+  height: 64em;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  background: rgba(0, 0, 0, 0.1);
+}
 .mainContainer {
-	width:75em;
-	margin:0 auto;
-	overflow:hidden;
-	border:1px dotted red;
-}
+  /*960x640 // 320x480 */
 
+  position: relative;
+  width: 96em;
+  height: 64em;
+  margin: 2em auto;
+  z-index: 1;
+  border: 0.4em solid #ddd;
+}
+/*header*/
+header {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  overflow: hidden;
+  /*.battery*/
 
-header {  
-	
-	overflow:hidden;
-	div {
-		float:left;
-	}
-	
-}
-header div {
-	float:left;
-}
+  /*solarPanel*/
 
-/*.battery*/
-.battery {
-	padding-right:1em;
 }
-.battery p {
-		
+header .column {
+  overflow: hidden;
+  float: left;
+  width: 33%;
 }
-.battery ul {
-	overflow:hidden;
-	height:1.5em;
-	width:5em;
-	padding:0 1% 0 2%;
-	border:1px solid #00aeef;
+header .battery {
+  padding-right: 1em;
+  float: left;
 }
-.battery ul li {
-	float:left;
-	width:1em;
-	height:100%;
-	padding:2% 0 0 1%;
+header .battery ul {
+  overflow: hidden;
+  height: 1.5em;
+  width: 5em;
+  padding: 0 1% 0 2%;
+  margin: 0.5em 0;
+  border: 1px solid #00aeef;
 }
-.battery ul li div {
-	width:90%;
-	height:90%;
-	background:#838dee;
+header .battery ul li {
+  float: left;
+  width: 1em;
+  height: 100%;
+  padding: 2% 0 0 1%;
 }
+header .battery ul li div {
+  width: 90%;
+  height: 90%;
+  background: #838dee;
+}
+header .solarPanel {
+  float: right;
+  padding: 0 0 0 1em;
+}
+header .weather {
+  float: left;
+}
+header .time {
+  text-align: center;
+}
+/*middle*/
+.middle {
+  width: 66.6%;
+  margin: 20em auto;
+  text-align: center;
+}
+/*footer*/
 footer {
-	overflow:hidden;
+  position: absolute;
+  bottom: 0;
+  width: 96%;
+  height: 25em;
+  overflow: hidden;
+  padding: 0 2%;
+  /*controller*/
+
+  /*break*/
+
+}
+footer .controller {
+  position: relative;
+  width: 20em;
+  height: 20em;
+  margin: 1em;
+  background-color: rgba(131, 141, 238, 0.1);
+  border: 0.1em solid rgba(0, 174, 239, 0.3);
+  -webkit-border-radius: 10em;
+  -moz-border-radius: 10em;
+  border-radius: 10em;
+}
+footer .controller .btn {
+  position: absolute;
+  border: 4px solid #ddd;
+  padding: 2em;
+  cursor: pointer;
+  background-color: rgba(0, 174, 239, 0.3);
+  /*54x58*/
+
+}
+footer .controller .btn:hover,
+footer .controller .btn.on {
+  background-color: #ddd;
+  color: #00aeef;
+}
+footer .controller .btn.up {
+  top: -5%;
+  left: 38%;
+}
+footer .controller .btn.down {
+  bottom: -5%;
+  left: 38%;
+}
+footer .controller .btn.left {
+  top: 37%;
+  left: -5%;
+}
+footer .controller .btn.right {
+  top: 37%;
+  right: -5%;
 }
 footer .trackerController {
-	float:left;
+  float: left;
 }
 footer .driverController {
-	float:right;
+  float: right;
 }
-
-
-.controller {
-	position:relative;
-	width:20em;
-	height:20em;
-	font-size:1.2em;
-	border:1px dotted black;
+footer .break {
+  width: 40%;
+  margin: 14.5em auto;
+  text-align: center;
+  border: 4px solid #ddd;
+  padding: 2em;
+  cursor: pointer;
+  background-color: rgba(0, 174, 239, 0.3);
 }
-.controller .btn {
-	position:absolute;
-	border:4px solid #ddd;
-	padding:2em;
-	/*54x58*/
+footer .break:hover,
+footer .break.on {
+  background-color: #ddd;
+  color: #00aeef;
 }
-.controller .btn:hover,
-.controller .btn.on  {
-	background-color:#ddd;
-	color:#00aeef;
-}
-
-.controller .btn.up {
-	top:0;
-	left:38%;
-}
-.controller .btn.down {
-	bottom:0;
-	left:38%;
-}
-.controller .btn.left {
-	top:37%;
-	left:0;
-}
-.controller .btn.right {
-	top:37%;
-	right:0;
-}
-
-
-
-
-
-
-

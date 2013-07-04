@@ -1,5 +1,14 @@
 @import url( 'reset.css' );
 
+/*.less vars*/
+.borderRadius(@border) {
+	-webkit-border-radius:@border;
+	-moz-border-radius:@border;
+	border-radius:@border;
+}
+
+
+
 
 body {
 	font-family:arial;
@@ -7,81 +16,178 @@ body {
 	background-color:#ccc;
 }
 
+#canvas {
+	position:absolute;
+	width:96em;
+	height:64em;
+	top:0;
+	left:0;
+	z-index:0;
+	background:rgba(0,0,0,0.1);
+}
 .mainContainer {
-	width:75em;
-	margin:0 auto;
+	/*960x640 // 320x480 */
+	position:relative;
+	width:96em;
+	height:64em;
+	margin:2em auto;
+	z-index:1;
+	border:0.4em solid #ddd;
 }
 
-
+/*header*/
 header {  
-	
+	position:absolute;
+	top:0;
+	width:100%;
 	overflow:hidden;
-	div {
+	
+	.column {
+		overflow:hidden;
+		float:left;
+		width:33%;
+		
+	}
+	
+	/*.battery*/
+	.battery {
+		padding-right:1em;
+		float:left;
+
+		p {
+
+		}
+		ul {
+			overflow:hidden;
+			height:1.5em;
+			width:5em;
+			padding:0 1% 0 2%;
+			margin:0.5em 0;
+			border:1px solid #00aeef;
+
+			li {
+				float:left;
+				width:1em;
+				height:100%;
+				padding:2% 0 0 1%;
+
+				div {
+					width:90%;
+					height:90%;
+					background:#838dee;
+				}
+			}
+		}
+	}
+
+	/*solarPanel*/
+	.solarPanel {
+		float:right;
+		padding:0 0 0 1em;
+	}
+	
+	.weather {
 		float:left;
 	}
 	
-}
-header div {
-	float:left;
-}
-
-.battery {
-	p {
-		
-	}
-	ul {
-		overflow:hidden;
-		border:1px solid red;
+	.time {
+		text-align:center;
 	}
 }
 
 
+
+
+
+/*middle*/
+.middle {
+	width:66.6%;
+	margin:20em auto;
+	text-align:center;
+}
+
+
+/*footer*/
 footer {
-	overflow:hidden;
-}
-footer .trackerController {
-	float:left;
-}
-footer .driverController {
-	float:right;
-}
-
-
-.controller {
-	position:relative;
-	width:20em;
-	height:20em;
-	font-size:1.2em;
-	border:1px dotted black;
-}
-.controller .btn {
 	position:absolute;
-	border:4px solid #ddd;
-	padding:2em;
-	/*54x58*/
-}
-.controller .btn:hover,
-.controller .btn.on  {
-	background-color:#ddd;
-	color:#00aeef;
+	bottom:0;
+	width:96%;
+	height:25em;
+	overflow:hidden;
+	padding:0 2%;
+	
+	/*controller*/
+	.controller {
+		position:relative;
+		width:20em;
+		height:20em;
+		margin:1em;
+		background-color:rgba(131, 141, 238, 0.1);
+		border:0.1em solid rgba(0, 174, 239, 0.3);
+		
+		
+		.borderRadius(10em);
+
+		.btn {
+			position:absolute;
+			border:4px solid #ddd;
+			padding:2em;
+			cursor:pointer;
+			background-color:rgba(0, 174, 239,0.3);
+			/*54x58*/
+
+		}
+		.btn:hover,
+		.btn.on  {
+			background-color:#ddd;
+			color:#00aeef;
+		}
+		.btn.up {
+			top:-5%;
+			left:38%;
+		}
+		.btn.down {
+			bottom:-5%;
+			left:38%;
+		}
+		.btn.left {
+			top:37%;
+			left:-5%;
+		}
+		.btn.right {
+			top:37%;
+			right:-5%;
+		}
+	}
+	
+	.trackerController {
+		float:left;
+	}
+	.driverController {
+		float:right;
+	}
+	
+	
+	/*break*/
+	.break {
+		width:40%;
+		margin:14.5em auto;
+		text-align:center;
+		border:4px solid #ddd;
+		padding:2em;
+		cursor:pointer;
+		background-color:rgba(0, 174, 239,0.3);
+	}
+	.break:hover,
+	.break.on  {
+		background-color:#ddd;
+		color:#00aeef;
+	}
 }
 
-.controller .btn.up {
-	top:0;
-	left:38%;
-}
-.controller .btn.down {
-	bottom:0;
-	left:38%;
-}
-.controller .btn.left {
-	top:37%;
-	left:0;
-}
-.controller .btn.right {
-	top:37%;
-	right:0;
-}
+
+
+
 
 
 

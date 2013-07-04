@@ -10,10 +10,11 @@
 	
 	<div class="mainContainer">
 		
-		<canvas id="distanceAndLight"></canvas>
+		<canvas id="canvas"></canvas>
 		
 		<header>
-			<div class="battery batteryOne">
+			<div class="column">
+				<div class="battery batteryOne">
 				<p class="percentage">0%</p>
 				<ul>
 					<li><div></div></li>
@@ -25,7 +26,7 @@
 				<p class="volts">0 volts</p>
 				<p class="amps">0 amps</p>
 			</div>
-			<div class="battery batteryTwo">
+				<div class="battery batteryTwo">
 				<p class="percentage">0%</p>
 				<ul>
 					<li><div></div></li>
@@ -37,29 +38,52 @@
 				<p class="volts">0 volts</p>
 				<p class="amps">0 amps</p>
 			</div>
-			<div class="time">
-				00.00.00
 			</div>
-			<div class="solarPanels">
-				<p class="capacity">0% capacity</p>
-				<p class="volts">0 volts</p>
-				<p class="amps">0 amps</p>
+			<div class="column">
+				<div class="time">
+					00.00.00
+				</div>
 			</div>
-			<div class="solarPanels">
-				<p class="capacity">0% capacity</p>
-				<p class="volts">0 volts</p>
-				<p class="amps">0 amps</p>
-			</div>
-			<div class="solarPanels">
-				<p class="temperature">0 degrees C</p>
-				<p class="humidity">0%</p>
+			<div class="column">
+				
+				<div class="weather">
+					<p class="temperature">0 degrees C</p>
+					<p class="humidity">0% humidity</p>
+				</div>
+				
+				<div class="battery solarPanel panelOne">
+					<p class="capacity">0% capacity</p>
+					<ul>
+						<li><div></div></li>
+						<li><div></div></li>
+						<li><div></div></li>
+						<li><div></div></li>
+						<li><div></div></li>
+					</ul>
+					<p class="volts">0 volts</p>
+					<p class="amps">0 amps</p>
+				</div>
+				<div class="battery solarPanel panelTwo">
+					<p class="capacity">0% capacity</p>
+					<ul>
+						<li><div></div></li>
+						<li><div></div></li>
+						<li><div></div></li>
+						<li><div></div></li>
+						<li><div></div></li>
+					</ul>
+					<p class="volts">0 volts</p>
+					<p class="amps">0 amps</p>
+				</div>
 			</div>
 		</header>
 		
-		<div class="btn driverMode">Automatic</div>
+		<section class="middle">
+			<div class="btn driverMode">Automatic</div>
 		
-		<section class="alerts">
-			<p>Auto-break Activated!</p>
+			<section class="alerts">
+				<p>Auto-break Activated!</p>
+			</section>
 		</section>
 		
 		<footer>
