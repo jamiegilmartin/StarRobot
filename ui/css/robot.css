@@ -103,6 +103,21 @@ footer .controller {
   -moz-border-radius: 10em;
   border-radius: 10em;
 }
+footer .controller p {
+  position: absolute;
+  width: 5em;
+  padding: 1.6em 0 2em 0;
+  text-align: center;
+  background-color: rgba(131, 141, 238, 0.1);
+  border: 0.1em solid rgba(0, 174, 239, 0.3);
+  top: 38%;
+  left: 39%;
+  color: #ddd;
+  letter-spacing: 0.1em;
+  -webkit-border-radius: 2.5em;
+  -moz-border-radius: 2.5em;
+  border-radius: 2.5em;
+}
 footer .controller .btn {
   position: absolute;
   border: 4px solid #ddd;
@@ -133,10 +148,10 @@ footer .controller .btn.right {
   top: 37%;
   right: -5%;
 }
-footer .trackerController {
+footer .driverController {
   float: left;
 }
-footer .driverController {
+footer .trackerController {
   float: right;
 }
 footer .break {
