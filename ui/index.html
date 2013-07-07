@@ -3,6 +3,7 @@
 <head>
 	<title>jAmiE's SandBBBox</title>
 	<link rel="stylesheet" href="css/robot.css" type="text/css" media="screen" title="no title" charset="utf-8">
+	<script src="js/robot.joystick.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/robot.controls.js" type="text/javascript" charset="utf-8"></script>
 	<script>
 		window.onload = function(){
@@ -92,14 +93,14 @@
 		</section>
 		
 		<footer>
-			<div class="controller driverController">
+			<div class="controller driverController" id="driver">
 				<p>drive</p>
 				<div class="btn up">w</div>
-				<div class="btn down">z</div>
+				<div class="btn down">s</div>
 				<div class="btn left">a</div>
-				<div class="btn right">s</div>
+				<div class="btn right">d</div>
 			</div>
-			<div class="controller trackerController">
+			<div class="controller trackerController" id="tracker">
 				<p>track</p>
 				<div class="btn up">&#8593;</div>
 				<div class="btn down">&#8595;</div>

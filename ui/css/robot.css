@@ -4,6 +4,7 @@ body {
   font-family: arial;
   font-size: 10px;
   background-color: #ccc;
+  -webkit-font-smoothing: antialiased;
 }
 #canvas {
   position: absolute;
@@ -108,8 +109,8 @@ footer .controller p {
   width: 5em;
   padding: 1.6em 0 2em 0;
   text-align: center;
-  background-color: rgba(131, 141, 238, 0.1);
-  border: 0.1em solid rgba(0, 174, 239, 0.3);
+  background-color: rgba(131, 141, 238, 0.5);
+  border: 0.1em solid #00aeef;
   top: 38%;
   left: 39%;
   color: #ddd;
@@ -117,6 +118,14 @@ footer .controller p {
   -webkit-border-radius: 2.5em;
   -moz-border-radius: 2.5em;
   border-radius: 2.5em;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  opacity: 0.3;
+}
+footer .controller p.active {
+  opacity: 1;
 }
 footer .controller .btn {
   position: absolute;

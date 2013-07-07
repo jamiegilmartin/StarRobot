@@ -2,58 +2,71 @@ var Robot = window.Robot || {};
  
 /**
  * @class Robot.Controls 
- * @description a responsive slide show
- * @param view - slide show view port
+ * @description Robot UI
+ * @param 
  */
 Robot.Controls = function(){
-	this.keyParser();
-};
-
-Robot.Controls.prototype.keyParser = function(){
-	var self = this;
+	this.driver = new Robot.Joystick(document.getElementById('driver'));
+	this.tracker = new Robot.Joystick(document.getElementById('tracker'));
 	
 	this.activeKey;
 	
+	this.events();
+};
+
+Robot.Controls.prototype.events = function(){
+	var self = this;
+
 	document.addEventListener('keydown',function(e){
-		console.log(e.keyCode);
-		var keycode = e.keyCode;
-		if( keycode === 38 ){
-			self.up();
-		}
-		if( keycode === 38 ){
-			self.up();
-		}
+		e.preventDefault();
+		self.keyDown( e.keyCode );
 	},false);
 	
 	document.addEventListener('keyup',function(e){
-		console.log(e.keyCode);
 		self.keyUp();
 	},false);
 	
-	console.log('key', String.fromCharCode() );
+	//console.log('key', String.fromCharCode() );
 };
 
-Robot.Controls.prototype.up = function(){
-	this.activeKey = document.getElementsByClassName('up')[0];
+Robot.Controls.prototype.keyDown = function( keycode ){
+	//console.log(keycode);
+	this.activeKey = null;
+	
+	//tracker
+	if( keycode === 38 ){
+		this.activeKey = this.tracker.up();
+	}
+	if( keycode === 40 ){
+		this.activeKey = this.tracker.down();
+	}
+	if( keycode === 37 ){
+		this.activeKey = this.tracker.left();
+	}
+	if( keycode === 39 ){
+		this.activeKey = this.tracker.right();
+	}
+	//driver
+	if( keycode === 87 ){
+		this.activeKey = this.driver.up();
+	}
+	if( keycode === 83 ){
+		this.activeKey = this.driver.down();
+	}
+	if( keycode === 65 ){
+		this.activeKey = this.driver.left();
+	}
+	if( keycode === 68 ){
+		this.activeKey = this.driver.right();
+	}
+	
+	if(this.activeKey)
 	this.activeKey.classList.add('active');
-	console.log('up');
 };
-Robot.Controls.prototype.down = function(){
-	this.activeKey = document.getElementsByClassName('down')[0];
-	this.activeKey.classList.add('active');
-	console.log('down');
-};
-Robot.Controls.prototype.right = function(){
-	this.activeKey = document.getElementsByClassName('right')[0];
-	this.activeKey.classList.add('active');
-	console.log('right');
-};
-Robot.Controls.prototype.left = function(){
-	this.activeKey = document.getElementsByClassName('left')[0];
-	this.activeKey.classList.add('active');
-	console.log('left');
-};
+
 Robot.Controls.prototype.keyUp = function(){
 	if(this.activeKey)
 	this.activeKey.classList.remove('active');
+	this.tracker.blink.classList.remove('active');
+	this.driver.blink.classList.remove('active');
 };

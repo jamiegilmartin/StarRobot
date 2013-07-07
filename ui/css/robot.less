@@ -6,14 +6,19 @@
 	-moz-border-radius:@border;
 	border-radius:@border;
 }
-
-
+.transition(@transition){
+	-webkit-transition: @transition;
+	-moz-transition: @transition;
+	-o-transition: @transition;
+	transition: @transition;
+}
 
 
 body {
 	font-family:arial;
 	font-size:10px;
 	background-color:#ccc;
+	-webkit-font-smoothing: antialiased;
 }
 
 #canvas {
@@ -133,13 +138,18 @@ footer {
 			width:5em;
 			padding:1.6em 0 2em 0;
 			text-align:center;
-			background-color:rgba(131, 141, 238, 0.1);
-			border:0.1em solid rgba(0, 174, 239, 0.3);
+			background-color:rgba(131, 141, 238, 0.5);
+			border:0.1em solid rgba(0, 174, 239, 1);
 			top:38%;
 			left:39%;
 			color:#ddd;
 			letter-spacing:0.1em;
 			.borderRadius(2.5em);
+			.transition(all 0.2s ease-in-out);
+			opacity:0.3;
+		}
+		p.active  {
+			opacity:1;
 		}
 		.btn {
 			position:absolute;
@@ -180,6 +190,8 @@ footer {
 	.trackerController {
 		float:right;
 	}
+	
+	
 	
 	/*break*/
 	.break {
