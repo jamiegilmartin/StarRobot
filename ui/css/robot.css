@@ -128,7 +128,7 @@ footer .controller .btn {
 
 }
 footer .controller .btn:hover,
-footer .controller .btn.on {
+footer .controller .btn.active {
   background-color: #ddd;
   color: #00aeef;
 }
@@ -164,7 +164,7 @@ footer .break {
   background-color: rgba(0, 174, 239, 0.3);
 }
 footer .break:hover,
-footer .break.on {
+footer .break.active {
   background-color: #ddd;
   color: #00aeef;
 }
