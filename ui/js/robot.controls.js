@@ -18,7 +18,7 @@ Robot.Controls.prototype.events = function(){
 	var self = this;
 
 	document.addEventListener('keydown',function(e){
-		e.preventDefault();
+		//e.preventDefault();
 		self.keyDown( e.keyCode );
 	},false);
 	

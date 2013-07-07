@@ -7,7 +7,7 @@ var Robot = window.Robot || {};
  */
 Robot.Joystick = function( arrowPad ){
 	this.arrowPad = arrowPad;
-	this.blink = this.arrowPad.getElementsByTagName('p')[0];
+	this.blink = this.arrowPad.getElementsByTagName('p')[0]
 };
 Robot.Joystick.prototype.up = function(){
 	this.blink.classList.add('active');
