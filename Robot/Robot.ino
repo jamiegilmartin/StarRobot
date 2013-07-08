@@ -100,7 +100,7 @@ void loop(){
  //delay(15);
 
 
-  delay(1000);
+  delay(2000);
   //Track();
 
 
