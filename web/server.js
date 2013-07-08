@@ -4,7 +4,7 @@ var app = require('http').createServer( serve ),
 	fs = require('fs'),
 	serialport = require("serialport"),
 	SerialPort = serialport.SerialPort,
-	serial = new SerialPort("/dev/tty.usbmodem3d21", {
+	serial = new SerialPort("/dev/tty.usbmodem1d21", {
 		baudrate: 9600,
 		parser: serialport.parsers.readline("\n") 
 	});
@@ -44,7 +44,6 @@ function serve(request, response) {
 					response.writeHead(200, { 'Content-Type': contentType });
 					response.end(data, 'utf-8');
 				}
-
 			});
 			
 			
@@ -55,7 +54,7 @@ function serve(request, response) {
 		
 	});
 	
-}
+};
 
 io.sockets.on('connection', function (socket) {
 	socket.emit('news', { hello: 'world' });
@@ -64,8 +63,8 @@ io.sockets.on('connection', function (socket) {
 	});
 });
 
-/*
+
 serial.on("data", function (data) {
 	console.log("from arduino: "+data);
+	io.sockets.emit('range', { range: data });
 });
-*/

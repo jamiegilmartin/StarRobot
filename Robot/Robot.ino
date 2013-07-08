@@ -61,6 +61,7 @@ void setup(){
  pinMode(trigPin, OUTPUT);
  pinMode(echoPin, INPUT);
  
+/*
  //motors
  pinMode(STBY, OUTPUT);
  
@@ -86,7 +87,7 @@ void setup(){
  for (int thisVReading = 0; thisVReading < numReadings; thisVReading++){
   Vreadings[thisVReading] = 0;
  }
- 
+ */
  
 }
 
