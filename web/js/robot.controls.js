@@ -139,4 +139,6 @@ Robot.Controls.prototype.keyUp = function(){
 	this.activeKey.classList.remove('active');
 	this.tracker.blink.classList.remove('active');
 	this.driver.blink.classList.remove('active');
+	
+	Robot.send('driver','stop');
 };

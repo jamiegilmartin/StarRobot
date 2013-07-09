@@ -21,7 +21,9 @@ int BIN2 = 6; //Direction
 Servo horizontalServo;
 Servo verticalServo; 
 
-int interval = 0;
+int verticalInterval;
+int horizontalInterval;
+int trackerDegreeInterval = 10;
 
 void setup(){
 	Serial.begin(9600);
@@ -43,12 +45,13 @@ void setup(){
 	horizontalServo.attach(11);
 	verticalServo.attach(10);
 
-	interval = 0;
+	verticalInterval = 0;
+	horizontalInterval = 0;
 }
 
 void loop(){
 
-	Ping();
+	//Ping();
 	
 /*
 	if(interval < 180){
@@ -69,34 +72,71 @@ void serialIn() {
 	
 	//read input
 	int serialVal = Serial.read() - '0';
-	
+
+	//tracker
 	if(serialVal == 0){
-		//forward
-		//goForward();
-		Serial.println("go forward");
+		Serial.println("tracker up");
+		
+		//down inverted
+		if(verticalInterval > 0){
+			verticalServo.write( verticalInterval );
+			verticalInterval -= trackerDegreeInterval;
+		}
 	}
 	else if(serialVal == 1){
-		//left
-		//turnLeft();
-		Serial.println("go left");
+		Serial.println("tracker down");
+		//up inverted
+		if(verticalInterval < 180){
+			verticalServo.write( verticalInterval );
+			verticalInterval += trackerDegreeInterval;
+		}
 	}
 	else if(serialVal == 2){
-		//right
-		//turnRight();
-		Serial.println("go right");
+		Serial.println("tracker right");
+		//left
+		if(horizontalInterval > 0){
+			horizontalServo.write( horizontalInterval );
+			horizontalInterval -= trackerDegreeInterval;
+		}
 	}
 	else if(serialVal == 3){
-		//up
-		//goUp();
+		Serial.println("tracker left");
+		
+		//right
+		if(horizontalInterval < 180){
+			horizontalServo.write( horizontalInterval );
+			horizontalInterval += trackerDegreeInterval;
+		}
 	}
+	//driver
+	//motor1 = left | motor 2 = right
 	else if(serialVal == 4){
-		//down
-		//goDown();
+		Serial.println("driver forward");
+		//forward
+		motorMove(1, 255, 1); //motor 1, full speed, left
+		motorMove(2, 255, 0); //motor 2, full speed, right
 	}
 	else if(serialVal == 5){
+		Serial.println("driver back");
+		//back
+		motorMove(1, 255, 0); //motor 1, full speed, right
+		motorMove(2, 255, 1); //motor 2, full speed, left
+	}
+	else if(serialVal == 6){
+		Serial.println("driver right");
+		//right
+		//motorMove(1, 128, 1); //motor 1, half speed, left
+		motorMove(2, 128, 0); //motor 2, half speed, left
+	}
+	else if(serialVal == 7){
+		Serial.println("driver left");
+		//left
+		motorMove(1, 128, 1); //motor 1, half speed, left
+		//motorMove(2, 128, 0); //motor 2, half speed, left
 		
-		//stop all
-		//stop();
+	}else if(serialVal == 8){
+		Serial.println("driver stop");
+		motorStop();
 	}
 	Serial.flush();
 }

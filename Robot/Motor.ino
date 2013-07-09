@@ -1,4 +1,4 @@
-void move(int motor, int speed, int direction){
+void motorMove(int motor, int speed, int direction){
 //Move specific motor at speed and direction
 //motor: 0 for B 1 for A
 //speed: 0 is off, and 255 is full speed
@@ -25,7 +25,7 @@ void move(int motor, int speed, int direction){
   }
 }
 
-void stop(){
+void motorStop(){
 //enable standby  
   digitalWrite(STBY, LOW); 
 }

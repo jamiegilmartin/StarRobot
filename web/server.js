@@ -1,4 +1,4 @@
-var sp = "/dev/tty.usbmodem1d21",
+var sp = "/dev/tty.usbmodem1d11",
 	app = require('http').createServer( serve ),
 	io = require('socket.io').listen(app, { log: false }),//shut off debug
 	path = require('path'),
@@ -57,39 +57,62 @@ function serve(request, response) {
 	
 };
 
-//on socket connection
-io.sockets.on('connection', function (socket) {
-	//socket.emit('distance', { distance: '12cm' });
-});
-
-//send to serial via sockets
-io.sockets.on('tracker', function (data) {
-	console.log(data);
-	serial.write("ls\n", function(err, results) {
-		console.log('err ' + err);
-		console.log('results ' + results);
- 	});
-});
-
-
+//receive data over serial
 serial.on("open", function () {
 	console.log('serial open');
-	
 	serial.on('data', function(data) {
-		console.log('data received: ' + data);
+		//console.log('data received: ' + data);
+		console.log("from arduino: "+data);
+		//io.sockets.emit('distance', { distance: data });
 	});
-	
+	/*
 	serial.write("0\n", function(err, results) {
 		console.log('err ' + err);
 		console.log('results ' + results);
-	});  
+	}); 
+	*/
 });
 
-//receive data over serial
-/*
-serial.on("data", function (data) {
-	//console.log("from arduino: "+data);
-	//io.sockets.emit('distance', { distance: data });
+//on socket connection
+io.sockets.on('connection', function (socket) {
+	socket.on('tracker', function ( data ) {
+		console.log('tracker', data.name );
+		//send to serial //TODO : see arduino json parser https://github.com/asaeed/InternetRobot/blob/master/arduino/src/sketch.ino
+		if(data.name == 'up'){
+			serial.write("0\n");
+		}
+		if(data.name == 'down'){
+			serial.write("1\n");
+		}
+		if(data.name == 'right'){
+			serial.write("2\n");
+		}
+		if(data.name == 'left'){
+			serial.write("3\n");
+		}
+	});
+	socket.on('driver', function ( data ) {
+		console.log('driver', data.name );
+		//send to serial
+		if(data.name == 'up'){
+			serial.write("4\n");
+		}
+		if(data.name == 'down'){
+			serial.write("5\n");
+		}
+		if(data.name == 'right'){
+			serial.write("6\n");
+		}
+		if(data.name == 'left'){
+			serial.write("7\n");
+		}
+		if(data.name == 'stop'){
+			serial.write("8\n");
+		}
+	});
 });
-*/
+	
+
+
+
 
