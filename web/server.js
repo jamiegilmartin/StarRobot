@@ -1,10 +1,11 @@
-var app = require('http').createServer( serve ),
-	io = require('socket.io').listen(app),
+var sp = "/dev/tty.usbmodem1d21",
+	app = require('http').createServer( serve ),
+	io = require('socket.io').listen(app, { log: false }),//shut off debug
 	path = require('path'),
 	fs = require('fs'),
 	serialport = require("serialport"),
 	SerialPort = serialport.SerialPort,
-	serial = new SerialPort("/dev/tty.usbmodem1d21", {
+	serial = new SerialPort(sp, {
 		baudrate: 9600,
 		parser: serialport.parsers.readline("\n") 
 	});
@@ -32,7 +33,7 @@ function serve(request, response) {
 				break;
 		}
 	
-	path.exists(filePath, function(exists){
+	fs.exists(filePath, function(exists){
 		
 		if(exists){
 			
@@ -56,15 +57,39 @@ function serve(request, response) {
 	
 };
 
+//on socket connection
 io.sockets.on('connection', function (socket) {
-	socket.emit('distance', { distance: '12cm' });
-	socket.on('my other event', function (data) {
-		console.log(data);
+	//socket.emit('distance', { distance: '12cm' });
+});
+
+//send to serial via sockets
+io.sockets.on('tracker', function (data) {
+	console.log(data);
+	serial.write("ls\n", function(err, results) {
+		console.log('err ' + err);
+		console.log('results ' + results);
+ 	});
+});
+
+
+serial.on("open", function () {
+	console.log('serial open');
+	
+	serial.on('data', function(data) {
+		console.log('data received: ' + data);
 	});
+	
+	serial.write("0\n", function(err, results) {
+		console.log('err ' + err);
+		console.log('results ' + results);
+	});  
 });
 
-
+//receive data over serial
+/*
 serial.on("data", function (data) {
-	console.log("from arduino: "+data);
-	io.sockets.emit('distance', { distance: data });
+	//console.log("from arduino: "+data);
+	//io.sockets.emit('distance', { distance: data });
 });
+*/
+

@@ -1,108 +1,108 @@
 #include <MotorDriver.h>
+#include <Servo.h>
 
-/*
-* 5V
-* pin D11 = horizontal servo
-* pin D10 = vertical servo
-* pin A0 = horizontal photoresistor with 10k resistor to pin (*white tape)
-* pin A1 = vertical photoresistor with 10k resistor to pin (*blue tape)
-*
-*/
-
-#include <Servo.h> 
-
+//ping pins
 #define trigPin 13
 #define echoPin 12
 
 
-//motor code
+//motor pins
 int STBY = 2; //standby
-
 //Motor A
 int PWMA = 3; //Speed control 
 int AIN1 = 9; //Direction
 int AIN2 = 8; //Direction
-
 //Motor B
 int PWMB = 5; //Speed control
 int BIN1 = 7; //Direction
 int BIN2 = 6; //Direction
 
-
-
-//create servo objects to control servos 
+//create servo objects
 Servo horizontalServo;
 Servo verticalServo; 
 
-int photoresistorHorizontal = 0;
-int photoresistorVertical = 1;
-
-int horizontalDegree;
-int verticalDegree;
-
-//smoothing - http://arduino.cc/en/Tutorial/Smoothing
-const int numReadings = 10;
-
-int Hreadings[numReadings];      // the readings from the analog input
-int Hindex = 0;                  // the index of the current reading
-int Htotal = 0;                  // the running total
-int Haverage = 0;                // the average
-
-int Vreadings[numReadings];
-int Vindex = 0;
-int Vtotal = 0;
-int Vaverage = 0;
-
+int interval = 0;
 
 void setup(){
- Serial.begin(9600);
- 
- //ping
- pinMode(trigPin, OUTPUT);
- pinMode(echoPin, INPUT);
- 
-/*
- //motors
- pinMode(STBY, OUTPUT);
- 
- pinMode(PWMA, OUTPUT);
- pinMode(AIN1, OUTPUT);
- pinMode(AIN2, OUTPUT);
- 
- pinMode(PWMB, OUTPUT);
- pinMode(BIN1, OUTPUT);
- pinMode(BIN2, OUTPUT);
+	Serial.begin(9600);
 
+	//ping
+	pinMode(trigPin, OUTPUT);
+	pinMode(echoPin, INPUT);
+	//motors
+	pinMode(STBY, OUTPUT);
+	//Motor A
+	pinMode(PWMA, OUTPUT);
+	pinMode(AIN1, OUTPUT);
+	pinMode(AIN2, OUTPUT);
+	//Motor B
+	pinMode(PWMB, OUTPUT);
+	pinMode(BIN1, OUTPUT);
+	pinMode(BIN2, OUTPUT);
+	//servos
+	horizontalServo.attach(11);
+	verticalServo.attach(10);
 
- //servos
- horizontalServo.attach(11);
- verticalServo.attach(10);
- pinMode(photoresistorHorizontal, INPUT);
- pinMode(photoresistorVertical, INPUT);
-	
- // initialize all the readings to 0: 
- for (int thisHReading = 0; thisHReading < numReadings; thisHReading++){
-   Hreadings[thisHReading] = 0;
- }
- for (int thisVReading = 0; thisVReading < numReadings; thisVReading++){
-  Vreadings[thisVReading] = 0;
- }
- */
- 
+	interval = 0;
 }
 
 void loop(){
 
-  Ping();
-  
-  
-  //Track();
+	Ping();
+	
+/*
+	if(interval < 180){
+		horizontalServo.write(interval);
+		verticalServo.write(interval);
+		interval++;
+	}else{
+		interval = 0;
+	}
+*/
+	serialIn();
+	//delay(2000);
 
- //delay(15);
+}
+void serialIn() {
+	//have arduino wait to receive input
+	while(Serial.available() == 0 );
+	
+	//read input
+	int serialVal = Serial.read() - '0';
+	
+	if(serialVal == 0){
+		//forward
+		//goForward();
+		Serial.println("go forward");
+	}
+	else if(serialVal == 1){
+		//left
+		//turnLeft();
+		Serial.println("go left");
+	}
+	else if(serialVal == 2){
+		//right
+		//turnRight();
+		Serial.println("go right");
+	}
+	else if(serialVal == 3){
+		//up
+		//goUp();
+	}
+	else if(serialVal == 4){
+		//down
+		//goDown();
+	}
+	else if(serialVal == 5){
+		
+		//stop all
+		//stop();
+	}
+	Serial.flush();
+}
 
 
-  delay(2000);
-  //Track();
+
 
 
 /*
@@ -129,7 +129,6 @@ void loop(){
   delay(1000);
   stop();
   delay(250);*/
-}
 
 
 

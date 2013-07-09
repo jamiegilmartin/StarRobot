@@ -19,13 +19,6 @@
 		window.onload = function(){
 			Robot.init();
 		};
-	
-		var socket = io.connect('http://localhost');
-		socket.on('distance', function (data) {
-			console.log(data);
-			Robot.update('distance',data);
-			//socket.emit('my other event', { my: 'data' });
-		});
 	</script>
 		
 </head>
