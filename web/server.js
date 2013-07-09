@@ -57,7 +57,7 @@ function serve(request, response) {
 };
 
 io.sockets.on('connection', function (socket) {
-	socket.emit('news', { hello: 'world' });
+	socket.emit('distance', { distance: '12cm' });
 	socket.on('my other event', function (data) {
 		console.log(data);
 	});
@@ -66,5 +66,5 @@ io.sockets.on('connection', function (socket) {
 
 serial.on("data", function (data) {
 	console.log("from arduino: "+data);
-	io.sockets.emit('range', { range: data });
+	io.sockets.emit('distance', { distance: data });
 });

@@ -7,26 +7,27 @@
 	
 	<link rel="stylesheet" href="css/robot.css" type="text/css" media="screen" title="no title" charset="utf-8">
 	
+	
+	
+	<script src="js/robot.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/robot.joystick.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/robot.controls.js" type="text/javascript" charset="utf-8"></script>
 	
+	
 	<script src="/socket.io/socket.io.js"></script>
 	<script>
+		window.onload = function(){
+			Robot.init();
+		};
+	
 		var socket = io.connect('http://localhost');
-		socket.on('news', function (data) {
+		socket.on('distance', function (data) {
 			console.log(data);
+			Robot.update('distance',data);
 			//socket.emit('my other event', { my: 'data' });
 		});
-		socket.on('range', function (data) {
-			console.log('range',data);
-		});
 	</script>
-	
-	<script>
-		window.onload = function(){
-			new Robot.Controls();
-		}
-	</script>
+		
 </head>
 
 <body>
@@ -63,7 +64,7 @@
 			</div>
 			</div>
 			<div class="column">
-				<div class="time">
+				<div class="distance">
 					00.00.00
 				</div>
 			</div>
@@ -102,7 +103,7 @@
 		</header>
 		
 		<section class="middle">
-			<div class="btn driverMode">Automatic</div>
+			<!-- <div class="driverMode">Automatic</div> -->
 		
 			<section class="alerts">
 				<p>Auto-break Activated!</p>

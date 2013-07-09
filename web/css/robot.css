@@ -71,8 +71,9 @@ header .solarPanel {
 header .weather {
   float: left;
 }
-header .time {
+header .distance {
   text-align: center;
+  padding-top: 1em;
 }
 /*middle*/
 .middle {
