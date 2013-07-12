@@ -1,4 +1,4 @@
-var sp = "/dev/tty.usbmodem1d11",
+var sp = "/dev/tty.usbmodem1d11", // "/dev/ttyACM0"
 	app = require('http').createServer( serve ),
 	io = require('socket.io').listen(app, { log: false }),//shut off debug
 	path = require('path'),

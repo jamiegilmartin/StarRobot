@@ -8,12 +8,13 @@ var Robot = window.Robot || {};
 Robot = {
 	init : function(){
 		//dom vars
+		this.alerts = document.getElementsByClassName('alerts')[0];
 		this.distance = document.getElementsByClassName('distance')[0];
 		
 		
 		
 		//socket io
-		this.socket = io.connect('http://localhost');
+		this.socket = io.connect('http://localhost'); //http://10.29.59.221
 		this.socket.on('distance', function (data) {
 			console.log('distance',data.distance);
 			Robot.receive('distance',data);
@@ -32,7 +33,7 @@ Robot = {
 		//send to open socket on server
 		this.socket.emit(name, { name : data});
 		
-		//console.log('ui sending : ', name, data);
+		this.alerts.innerHTML =  name +' '+ data
 	}
 	
 };

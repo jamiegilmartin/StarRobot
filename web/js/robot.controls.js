@@ -15,8 +15,14 @@ Robot.Controls = function(){
 };
 
 Robot.Controls.prototype.events = function(){
-	var self = this;
-
+	var self = this,
+		isMobile = /Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent),
+		onDown = isMobile ? 'touchstart' : 'mousedown',
+		onUp = isMobile ? 'touchend' : 'mouseup';
+		
+	
+	
+	
 	document.addEventListener('keydown',function(e){
 		//e.preventDefault();
 		self.keyDown( e.keyCode );
@@ -28,65 +34,65 @@ Robot.Controls.prototype.events = function(){
 	
 	//mouse events
 	//tracker
-	this.tracker.upBtn.addEventListener('mousedown',function(e){
+	this.tracker.upBtn.addEventListener(onDown,function(e){
 		self.activeKey = self.tracker.up();
 		Robot.send('tracker','up');
 	},false);
-	this.tracker.downBtn.addEventListener('mousedown',function(e){
+	this.tracker.downBtn.addEventListener(onDown,function(e){
 		self.activeKey = self.tracker.down();
 		Robot.send('tracker','down');
 	},false);
-	this.tracker.rightBtn.addEventListener('mousedown',function(e){
+	this.tracker.rightBtn.addEventListener(onDown,function(e){
 		self.activeKey = self.tracker.right();
 		Robot.send('tracker','right');
 	},false);
-	this.tracker.leftBtn.addEventListener('mousedown',function(e){
+	this.tracker.leftBtn.addEventListener(onDown,function(e){
 		self.activeKey = self.tracker.left();
 		Robot.send('tracker','left');
 	},false);
 	
 	//driver
-	this.driver.upBtn.addEventListener('mousedown',function(e){
+	this.driver.upBtn.addEventListener(onDown,function(e){
 		self.activeKey = self.driver.up();
 		Robot.send('driver','up');
 	},false);
-	this.driver.downBtn.addEventListener('mousedown',function(e){
+	this.driver.downBtn.addEventListener(onDown,function(e){
 		self.activeKey = self.driver.down();
 		Robot.send('driver','down');
 	},false);
-	this.driver.rightBtn.addEventListener('mousedown',function(e){
+	this.driver.rightBtn.addEventListener(onDown,function(e){
 		self.activeKey = self.driver.right();
 		Robot.send('driver','right');
 	},false);
-	this.driver.leftBtn.addEventListener('mousedown',function(e){
+	this.driver.leftBtn.addEventListener(onDown,function(e){
 		self.activeKey = self.driver.left();
 		Robot.send('driver','left');
 	},false);
 	
 	
 	//mouse up
-	this.tracker.upBtn.addEventListener('mouseup',function(e){
+	this.tracker.upBtn.addEventListener(onUp,function(e){
 		self.keyUp();
 	},false);
-	this.tracker.downBtn.addEventListener('mouseup',function(e){
+	this.tracker.downBtn.addEventListener(onUp,function(e){
 		self.keyUp();
 	},false);
-	this.tracker.rightBtn.addEventListener('mouseup',function(e){
+	this.tracker.rightBtn.addEventListener(onUp,function(e){
 		self.keyUp();
 	},false);
-	this.tracker.leftBtn.addEventListener('mouseup',function(e){
+	this.tracker.leftBtn.addEventListener(onUp,function(e){
 		self.keyUp();
 	},false);
-	this.driver.upBtn.addEventListener('mouseup',function(e){
+	this.driver.upBtn.addEventListener(onUp,function(e){
 		self.keyUp();
 	},false);
-	this.driver.downBtn.addEventListener('mouseup',function(e){
+	this.driver.downBtn.addEventListener(onUp,function(e){
 		self.keyUp();
 	},false);
-	this.driver.rightBtn.addEventListener('mouseup',function(e){
+	this.driver.rightBtn.addEventListener(onUp,function(e){
 		self.keyUp();
 	},false);
-	this.driver.leftBtn.addEventListener('mouseup',function(e){
+	this.driver.leftBtn.addEventListener(onUp,function(e){
 		sself.keyUp();
 	},false);
 };
