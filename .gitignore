@@ -1,0 +1,10 @@
+.tmp
+.idea
+.sass-cache
+node_modules
+build
+typings
+
+npm-debug.log
+*.iml
+.DS_Store
