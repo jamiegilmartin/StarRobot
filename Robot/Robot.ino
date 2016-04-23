@@ -1,4 +1,3 @@
-#include <MotorDriver.h>
 #include <Servo.h>
 
 //ping pins
@@ -18,12 +17,14 @@ int BIN1 = 7; //Direction
 int BIN2 = 6; //Direction
 
 //create servo objects
-Servo horizontalServo;
-Servo verticalServo; 
+Servo horizontalServo; //11
+Servo verticalServo; //10
 
 int verticalInterval;
 int horizontalInterval;
 int trackerDegreeInterval = 10;
+
+int pos = 0;
 
 void setup(){
 	Serial.begin(9600);
@@ -41,30 +42,23 @@ void setup(){
 	pinMode(PWMB, OUTPUT);
 	pinMode(BIN1, OUTPUT);
 	pinMode(BIN2, OUTPUT);
+  
 	//servos
 	horizontalServo.attach(11);
 	verticalServo.attach(10);
 
 	verticalInterval = 0;
 	horizontalInterval = 0;
+
 }
 
 void loop(){
+  //delay(2000);
 
-	//Ping();
-	
-/*
-	if(interval < 180){
-		horizontalServo.write(interval);
-		verticalServo.write(interval);
-		interval++;
-	}else{
-		interval = 0;
-	}
-*/
-	serialIn();
-	//delay(2000);
-
+  
+  serialIn();
+	Ping();
+  //test();
 }
 void serialIn() {
 	//have arduino wait to receive input
@@ -141,36 +135,59 @@ void serialIn() {
 	Serial.flush();
 }
 
-
-
-
-
+void test(){
+    
+  horizontalServo.write(90);
+  verticalServo.write(90);
+  
+  for (pos = 0; pos <= 180; pos += 1) { 
+    horizontalServo.write(pos);
+    Serial.println(pos);
+    delay(105);
+  }
+  for (pos = 180; pos >= 0; pos -= 1) {
+    horizontalServo.write(pos);
+    Serial.println(pos);
+    delay(105);
+  }
+  
 /*
-  move(1, 128, 1); //motor 1, full speed, left
-  move(2, 128, 0); //motor 2, full speed, left
+  
+  horizontalServo.write(45);
+  delay(250); 
+  horizontalServo.write(65);
+  delay(250);
+  horizontalServo.write(25);
+  delay(250); 
+  horizontalServo.write(90);
+  delay(250); 
+
+  
+  verticalServo.write(0);
+  delay(250);
+  verticalServo.write(45);
+  delay(250); 
+  verticalServo.write(90);
+  delay(250); 
+  verticalServo.write(180);
+  delay(250); 
+
+
+  motorMove(1, 128, 1); //motor 1, full speed, left
+  motorMove(2, 128, 0); //motor 2, full speed, left
 
   delay(250); //go for 1 second
-  stop(); //stop
+  motorStop(); //stop
   
   delay(250);
   
-  move(1, 128, 0); //motor 1, full speed, left
-  move(2, 128, 1); //motor 2, full speed, left
+  motorMove(1, 128, 0); //motor 1, full speed, left
+  motorMove(2, 128, 1); //motor 2, full speed, left
   
   delay(250); //go for 1 second
-  stop(); //stop
+  motorStop(); //stop
 */
 
-  /*delay(250); //hold for 250ms until move again
-
-  move(1, 128, 0); //motor 1, half speed, right
-  move(2, 128, 0); //motor 2, half speed, right
-
-  delay(1000);
-  stop();
-  delay(250);*/
-
-
-
+}
 
 

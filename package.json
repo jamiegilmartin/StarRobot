@@ -1,0 +1,36 @@
+{
+  "name": "starrobot",
+  "version": "1.0.0",
+  "description": "UI and Arduino Code for S.T.A.R. Robot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jamiegilmartin/StarRobot.git"
+  },
+  "keywords": [
+    "Arduino",
+    "Solar",
+    "Tracking"
+  ],
+  "author": "Jamie Gilmartin <jamiegilmartin@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jamiegilmartin/StarRobot/issues"
+  },
+  "homepage": "https://github.com/jamiegilmartin/StarRobot#readme",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "cookie-parser": "^1.4.1",
+    "express": "^4.13.4",
+    "express-handlebars": "^3.0.0",
+    "express-session": "^1.13.0",
+    "morgan": "^1.7.0",
+    "q": "^1.4.1",
+    "serialport": "^2.1.0",
+    "serve-favicon": "^2.3.0",
+    "socket.io": "^1.4.5"
+  }
+}
