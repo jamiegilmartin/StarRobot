@@ -39,7 +39,7 @@ io.on('connection', function(socket){
 
 
 //create serial port
-var sp = "/dev/cu.usbmodem1411" //"/dev/tty.usbmodem1d11", // "/dev/ttyACM0" //TODO config
+var sp = "/dev/ttyACM0",// "/dev/cu.usbmodem1411" //"/dev/tty.usbmodem1d11", // "/dev/ttyACM0" //TODO config
   SerialPort = serialport.SerialPort,
   serial = new SerialPort(sp, {
     baudrate: 9600,
