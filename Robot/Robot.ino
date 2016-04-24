@@ -138,14 +138,14 @@ void serialIn() {
 void test(){
     
   horizontalServo.write(90);
-  verticalServo.write(90);
+  verticalServo.write(180);
   
-  for (pos = 0; pos <= 180; pos += 1) { 
+  for (pos = 90; pos <= 180; pos += 1) { 
     horizontalServo.write(pos);
     Serial.println(pos);
     delay(105);
   }
-  for (pos = 180; pos >= 0; pos -= 1) {
+  for (pos = 180; pos >= 90; pos -= 1) {
     horizontalServo.write(pos);
     Serial.println(pos);
     delay(105);

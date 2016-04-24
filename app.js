@@ -70,7 +70,8 @@ serial.on("open", function () {
 io.sockets.on('connection', function (socket) {
   socket.on('tracker', function ( data ) {
     console.log('tracker', data.name );
-    //send to serial //TODO : see arduino json parser https://github.com/asaeed/InternetRobot/blob/master/arduino/src/sketch.ino
+    //send to serial
+    //TODO : see arduino json parser https://github.com/asaeed/InternetRobot/blob/master/arduino/src/sketch.ino
     if(data.name == 'up'){
       serial.write("0\n");
     }
