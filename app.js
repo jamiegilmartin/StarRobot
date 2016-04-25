@@ -1,4 +1,5 @@
-var express = require('express'),
+var config  = require('./config'),
+    express = require('express'),
     expressHbs = require('express-handlebars'),
     q = require('q'),
     fs = require('fs'),
@@ -14,6 +15,7 @@ var express = require('express'),
     http = require('http').Server(app),
     io = require('socket.io')(http);//var io = socketio.listen(http, { log: true });
 
+config = config['production'];//config['development'];
 
 app.use(cookieParser()); // read cookies (needed for auth)
 app.use(bodyParser.json()); // for parsing application/json
@@ -39,7 +41,7 @@ io.on('connection', function(socket){
 
 
 //create serial port
-var sp = "/dev/ttyACM0",// "/dev/cu.usbmodem1411" //"/dev/tty.usbmodem1d11", // "/dev/ttyACM0" //TODO config
+var sp =  config.sp, // "/dev/ttyACM0"
   SerialPort = serialport.SerialPort,
   serial = new SerialPort(sp, {
     baudrate: 9600,

@@ -58,7 +58,7 @@ void loop(){
   
   serialIn();
 	Ping();
-  //test();
+  test();
 }
 void serialIn() {
 	//have arduino wait to receive input

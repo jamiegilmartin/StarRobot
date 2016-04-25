@@ -20,4 +20,10 @@ pi@raspberrypi /usr/bin $
 
 `sudo /usr/bin/dbu.sh upload cam.jpg cam.jpg`
 
--Camera commands `raspistill -o cam.jpg`
+NVM https://github.com/blobsmith/raspberryTestNode/wiki/Node.js-installation-with-nvm-on-Raspberry-pi
+
+-Camera commands `raspistill -o cam.jpg` alt http://iharder.sourceforge.net/current/macosx/imagesnap/
+
+Circuit https://learn.adafruit.com/minty-boost
+
+Uno https://arduino-info.wikispaces.com/file/view/ArduinoUNO-900.jpg/421496636/ArduinoUNO-900.jpg
