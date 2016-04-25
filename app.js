@@ -110,6 +110,9 @@ io.sockets.on('connection', function (socket) {
       serial.write("8\n");
     }
   });
+  socket.on('disconnect', function(who){
+    console.log('user disconnected',who);
+  });
 });
 
 

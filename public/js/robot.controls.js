@@ -20,9 +20,6 @@ Robot.Controls.prototype.events = function(){
     onDown = isMobile ? 'touchstart' : 'mousedown',
     onUp = isMobile ? 'touchend' : 'mouseup';
 
-
-
-
   document.addEventListener('keydown',function(e){
     //e.preventDefault();
     self.keyDown( e.keyCode );
@@ -35,36 +32,44 @@ Robot.Controls.prototype.events = function(){
   //mouse events
   //tracker
   this.tracker.upBtn.addEventListener(onDown,function(e){
+    e.preventDefault();
     self.activeKey = self.tracker.up();
     Robot.send('tracker','up');
   },false);
   this.tracker.downBtn.addEventListener(onDown,function(e){
+    e.preventDefault();
     self.activeKey = self.tracker.down();
     Robot.send('tracker','down');
   },false);
   this.tracker.rightBtn.addEventListener(onDown,function(e){
+    e.preventDefault();
     self.activeKey = self.tracker.right();
     Robot.send('tracker','right');
   },false);
   this.tracker.leftBtn.addEventListener(onDown,function(e){
+    e.preventDefault();
     self.activeKey = self.tracker.left();
     Robot.send('tracker','left');
   },false);
 
   //driver
   this.driver.upBtn.addEventListener(onDown,function(e){
+    e.preventDefault();
     self.activeKey = self.driver.up();
     Robot.send('driver','up');
   },false);
   this.driver.downBtn.addEventListener(onDown,function(e){
+    e.preventDefault();
     self.activeKey = self.driver.down();
     Robot.send('driver','down');
   },false);
   this.driver.rightBtn.addEventListener(onDown,function(e){
+    e.preventDefault();
     self.activeKey = self.driver.right();
     Robot.send('driver','right');
   },false);
   this.driver.leftBtn.addEventListener(onDown,function(e){
+    e.preventDefault();
     self.activeKey = self.driver.left();
     Robot.send('driver','left');
   },false);
@@ -72,27 +77,35 @@ Robot.Controls.prototype.events = function(){
 
   //mouse up
   this.tracker.upBtn.addEventListener(onUp,function(e){
+    e.preventDefault();
     self.keyUp();
   },false);
   this.tracker.downBtn.addEventListener(onUp,function(e){
+    e.preventDefault();
     self.keyUp();
   },false);
   this.tracker.rightBtn.addEventListener(onUp,function(e){
+    e.preventDefault();
     self.keyUp();
   },false);
   this.tracker.leftBtn.addEventListener(onUp,function(e){
+    e.preventDefault();
     self.keyUp();
   },false);
   this.driver.upBtn.addEventListener(onUp,function(e){
+    e.preventDefault();
     self.keyUp();
   },false);
   this.driver.downBtn.addEventListener(onUp,function(e){
+    e.preventDefault();
     self.keyUp();
   },false);
   this.driver.rightBtn.addEventListener(onUp,function(e){
+    e.preventDefault();
     self.keyUp();
   },false);
   this.driver.leftBtn.addEventListener(onUp,function(e){
+    e.preventDefault();
     self.keyUp();
   },false);
 };
