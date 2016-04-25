@@ -35,12 +35,13 @@ module.exports.stop = function(){
 module.exports.takePic = function(){
   var date = new Date(),
     fileName = "timeLapse-img_"+this.increment +"_date-"+(date.getMonth()+1)+"-"+date.getDate()+"-"+date.getFullYear()+"_"+date.getHours()+"-"+date.getMinutes()+"-"+date.getSeconds()+".jpg",
-    command = "raspistill -o "+this.directory+"/"+fileName;
+    path = this.directory+"/"+fileName
+    command = "raspistill -o "+ path;
 
   if(this.increment < this.maxPics){
     console.log('take pic',terminal.pid,this.increment,command)
 
-    this.images.push(fileName);
+    this.images.push(path);
 
     //command
     terminal.stdin.write(command+'\n');
@@ -51,4 +52,7 @@ module.exports.takePic = function(){
   }
 
   this.increment += 1;
+};
+module.exports.getLatest = function(){
+  return this.images.length > 0 ? this.images[this.images.length - 1] : null;
 };

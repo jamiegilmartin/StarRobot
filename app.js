@@ -32,7 +32,7 @@ app.use(favicon(path.join(__dirname,'public','favicon.ico')));
 app.set('port',  3000);
 
 
-
+//imageCapture
 var imageCapture = require('./modules/imageCapture');
 imageCapture.init();
 
@@ -116,9 +116,18 @@ io.sockets.on('connection', function (socket) {
       serial.write("8\n");
     }
   });
+  socket.on('getLatestImage',function(data){
+    console.log('getLatest',data, imageCapture.getLatest());
+    io.sockets.emit('latestImage', { latestImage: imageCapture.getLatest() });
+  });
   socket.on('disconnect', function(who){
     console.log('user disconnected',who);
   });
+
+  //test
+  io.sockets.emit('distance', { distance: 111 });
+
+
 });
 
 
