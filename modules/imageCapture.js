@@ -9,13 +9,14 @@ var fs = require('fs');
  */
 module.exports.init = function(delay){
 	var self = this;
-  this.output = 'output';
-  this.directory = this.output + '/stills';
+  this.output = './public/images/'; //~/Documents/Arduino/StarRobot
+  this.directory = this.output;
   this.delay = delay || 10000;
   this.increment = 0;
-  this.maxPics = 1000; //TODO: command
+  this.maxPics = 1000; //TODO:
   this.timer = null;
   this.stopped = false;
+  this.images = [];
 
   this.start();
 };
@@ -39,9 +40,10 @@ module.exports.takePic = function(){
   if(this.increment < this.maxPics){
     console.log('take pic',terminal.pid,this.increment,command)
 
+    this.images.push(fileName);
+
     //command
     terminal.stdin.write(command+'\n');
-
   }else{
     console.log('reached the max');
     this.stop();
