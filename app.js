@@ -32,17 +32,23 @@ app.use(favicon(path.join(__dirname,'public','favicon.ico')));
 app.set('port',  3000);
 
 
+
+var imageCapture = require('./modules/imageCapture');
+imageCapture.init();
+
+
+
+
+
+
 //socket.io
 io.on('connection', function(socket){
   console.log('a user connected');
 });
 
 
-
-
-
 /*
-//create serial port
+//create serial port - only if arduino is connected
 var sp = config.sp,
   SerialPort = serialport.SerialPort,
   serial = new SerialPort(sp, {

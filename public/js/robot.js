@@ -23,7 +23,7 @@ Robot = {
 
     //init
     this.controls = new Robot.Controls();
-    this.timer = new Robot.Timer(100,function(date, tick){
+    this.timer = new Robot.Timer(1000,function(date, tick){
       console.log('this date', date, tick);
     });
   },
@@ -38,5 +38,4 @@ Robot = {
 
     this.alerts.innerHTML =  name +' '+ data
   }
-
 };
