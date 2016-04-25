@@ -10,6 +10,7 @@ Robot = {
     var self = this;
 
     //dom vars
+    this.canvas = document.getElementById('canvas');
     this.alerts = document.getElementsByClassName('alerts')[0];
     this.distance = document.getElementsByClassName('distance')[0];
 

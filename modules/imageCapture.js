@@ -9,7 +9,7 @@ var fs = require('fs');
  */
 module.exports.init = function(delay){
 	var self = this;
-  this.output = './public/images/'; //~/Documents/Arduino/StarRobot
+  this.output = '~/Documents/Arduino/StarRobot/public/images';
   this.directory = this.output;
   this.delay = delay || 10000;
   this.increment = 0;
