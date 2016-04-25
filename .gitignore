@@ -8,5 +8,5 @@ npm-debug.log
 .rbx
 .idea/
 .sass-cache/
-
+node_modules/
 .tmp/
