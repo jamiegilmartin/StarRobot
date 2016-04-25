@@ -41,7 +41,7 @@ module.exports.takePic = function(){
   if(this.increment < this.maxPics){
     console.log('take pic',terminal.pid,this.increment,command)
 
-    this.images.push(path);
+    this.images.push(fileName);
 
     //command
     terminal.stdin.write(command+'\n');

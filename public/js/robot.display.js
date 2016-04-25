@@ -7,7 +7,8 @@ var Robot = window.Robot || {};
  */
 Robot.Display = function(element){
   this.canvas = element || document.getElementById('canvas');
-  this.lastPath = './images/DSC02280.JPG';
+  this.path = './images/'
+  this.lastPath = '';
   this.init();
 };
 Robot.Display.prototype.init = function(){
@@ -17,10 +18,10 @@ Robot.Display.prototype.init = function(){
     this.canvas = this.canvas.getContext('2d');
     console.log('init canvas');
 
-    this.setImage( this.lastPath );
+    this.setImage( 'DSC02280.JPG' );
   }
 };
-Robot.Display.prototype.setImage = function( path ){
+Robot.Display.prototype.setImage = function( imageName ){
   var self = this;
   //Loading of the home test image - img1
   var img = new Image();
@@ -33,6 +34,5 @@ Robot.Display.prototype.setImage = function( path ){
         0, 0, canvas.width, canvas.height);  // destination rectangle
   };
 
-  img.src = path;
-  this.lastPath = path;
+  img.src = this.lastPath = this.path + imageName;
 };
