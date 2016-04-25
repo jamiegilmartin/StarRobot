@@ -15,7 +15,9 @@ var config  = require('./config'),
     http = require('http').Server(app),
     io = require('socket.io')(http);//var io = socketio.listen(http, { log: true });
 
-config = config['production'];//config['development'];
+
+var env = 'development'; //'production'
+config = config[env];
 
 app.use(cookieParser()); // read cookies (needed for auth)
 app.use(bodyParser.json()); // for parsing application/json
@@ -39,15 +41,14 @@ io.on('connection', function(socket){
 
 
 
-
+/*
 //create serial port
-var sp =  config.sp, // "/dev/ttyACM0"
+var sp = config.sp,
   SerialPort = serialport.SerialPort,
   serial = new SerialPort(sp, {
     baudrate: 9600,
     parser: serialport.parsers.readline("\n")
   });
-
 
 //receive data over serial
 serial.on("open", function () {
@@ -57,14 +58,17 @@ serial.on("open", function () {
     console.log("from arduino: "+data);
     //io.sockets.emit('distance', { distance: data });
   });
-  /*
-  serial.write("0\n", function(err, results) {
-    console.log('err ' + err);
-    console.log('results ' + results);
-  });
-  */
-});
 
+  //serial.write("0\n", function(err, results) {
+  //  console.log('err ' + err);
+  //  console.log('results ' + results);
+  //});
+
+});
+*/
+
+//test serial
+var serial = {write:function(f){console.log(f)}};
 
 
 
