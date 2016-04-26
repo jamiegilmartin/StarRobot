@@ -16,7 +16,7 @@ var config  = require('./config'),
     io = require('socket.io')(http);//var io = socketio.listen(http, { log: true });
 
 
-var env = 'development'; //'production'
+var env = 'production'; //'production' || 'development'
 config = config[env];
 
 app.use(cookieParser()); // read cookies (needed for auth)
@@ -47,7 +47,7 @@ io.on('connection', function(socket){
 });
 
 
-/*
+/**/
 //create serial port - only if arduino is connected
 var sp = config.sp,
   SerialPort = serialport.SerialPort,
@@ -71,7 +71,7 @@ serial.on("open", function () {
   //});
 
 });
-*/
+
 
 //test serial
 var serial = {write:function(f){console.log(f)}};

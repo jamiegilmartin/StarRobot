@@ -2,7 +2,7 @@
 
 ============
 
-Solar Tracking Arduino Raspberrypi Robot
+#A *Solar* *Tracking* *Arduino* *Raspberrypi* Robot
 
 ###Pi Setup
 
@@ -27,3 +27,9 @@ NVM https://github.com/blobsmith/raspberryTestNode/wiki/Node.js-installation-wit
 Circuit https://learn.adafruit.com/minty-boost
 
 Uno https://arduino-info.wikispaces.com/file/view/ArduinoUNO-900.jpg/421496636/ArduinoUNO-900.jpg
+
+Arduino Command line tool http://inotool.org/ https://github.com/amperka/ino/issues/252`sudo apt-get install python-pip sudo pip install glob2\` Install with python-pip! http://inotool.org/quickstart
+
+Find SerialPort
+
+`dmesg | grep tty` http://www.instructables.com/id/Read-and-write-from-serial-port-with-Raspberry-Pi/

@@ -1,8 +1,8 @@
 module.exports = {
   development: {
-    sp: "/dev/tty.usbmodem1d11" // "/dev/ttyACM0"
+    sp: "/dev/tty.usbmodem1d11" //mac
   },
   production: {
-    sp: "/dev/cu.usbmodem1411" //pi
+    sp: "/dev/ttyACM0" //pi
   }
 };
