@@ -59,6 +59,8 @@ var sp = config.sp,
 //receive data over serial
 serial.on("open", function () {
   console.log('serial open');
+
+
   serial.on('data', function(data) {
     //console.log('data received: ' + data);
     console.log("from arduino: "+data);
@@ -74,7 +76,7 @@ serial.on("open", function () {
 
 
 //test serial
-var serial = {write:function(f){console.log(f)}};
+//var serial = {write:function(f){console.log(f)}};
 
 
 
