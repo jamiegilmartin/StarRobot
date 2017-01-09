@@ -17,7 +17,6 @@ body {
 }
 .mainContainer {
   /*960x640 // 320x480 */
-
   position: relative;
   width: 96em;
   height: 64em;
@@ -39,9 +38,7 @@ header {
   width: 100%;
   overflow: hidden;
   /*.battery*/
-
   /*solarPanel*/
-
 }
 header .column {
   overflow: hidden;
@@ -97,9 +94,7 @@ footer {
   overflow: hidden;
   padding: 0 2%;
   /*controller*/
-
   /*break*/
-
 }
 footer .controller {
   position: relative;
@@ -116,7 +111,9 @@ footer .controller {
 footer .controller p {
   position: absolute;
   width: 5em;
-  padding: 1.6em 0 2em 0;
+  height: 5em;
+  padding: 1.8em 0 2em 0;
+  box-sizing: border-box;
   text-align: center;
   background-color: rgba(131, 141, 238, 0.5);
   border: 0.1em solid #00aeef;
@@ -124,9 +121,9 @@ footer .controller p {
   left: 39%;
   color: #ddd;
   letter-spacing: 0.1em;
-  -webkit-border-radius: 2.5em;
-  -moz-border-radius: 2.5em;
-  border-radius: 2.5em;
+  -webkit-border-radius: 5em;
+  -moz-border-radius: 5em;
+  border-radius: 5em;
   -webkit-transition: all 0.2s ease-in-out;
   -moz-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;
@@ -143,7 +140,6 @@ footer .controller .btn {
   cursor: pointer;
   background-color: rgba(0, 174, 239, 0.3);
   /*54x58*/
-
 }
 footer .controller .btn:hover,
 footer .controller .btn.active {

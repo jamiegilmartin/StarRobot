@@ -47,7 +47,7 @@ io.on('connection', function(socket){
 });
 
 
-/**/
+/*
 //create serial port - only if arduino is connected
 var sp = config.sp,
   SerialPort = serialport.SerialPort,
@@ -73,10 +73,10 @@ serial.on("open", function () {
   //});
 
 });
-
+*/
 
 //test serial
-//var serial = {write:function(f){console.log(f)}};
+var serial = {write:function(f){console.log(f)}};
 
 
 

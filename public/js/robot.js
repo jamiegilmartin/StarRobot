@@ -20,6 +20,8 @@ Robot = {
     this.controls = new Robot.Controls();
     this.display = new Robot.Display();
 
+    this.speak();
+
     this.timer = new Robot.Timer( this.delay ,function(date, tick){
       console.log('this date', date, tick);
       self.send('getLatestImage', { getLatestImage: 'data' });
@@ -57,7 +59,16 @@ Robot = {
     this.socket.on('latestImage', function (data) {
       Robot.receive('latestImage',data);
     });
+  },
+  speak : function(){
+    var doneSpeaking = false;
+    meSpeak.loadConfig("js/libraries/mespeak/mespeak_config.json");
+    meSpeak.loadVoice("js/libraries/mespeak/voices/en/en.json");
 
+    //intro
+    meSpeak.speak("Hello, I'm Star bot.  Can we be friends? Are you nice?", {speed: 50},function(){
+      doneSpeaking = true;
+    });
 
   }
 };

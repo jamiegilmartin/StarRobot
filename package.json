@@ -28,6 +28,7 @@
     "express-handlebars": "^3.0.0",
     "express-session": "^1.13.0",
     "handlebars": "^4.0.5",
+    "mespeak": "^2.0.0",
     "morgan": "^1.7.0",
     "q": "^1.4.1",
     "serialport": "^2.1.0",
