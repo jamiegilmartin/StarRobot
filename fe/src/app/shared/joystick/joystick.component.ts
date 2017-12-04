@@ -1,4 +1,5 @@
-import { Component, OnInit, Input, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ViewContainerRef} from '@angular/core';
+
 @Component({
   selector: 'app-joystick',
   templateUrl: './joystick.component.html',
@@ -10,17 +11,19 @@ export class JoystickComponent implements OnInit {
   @Input() down;
   @Input() left;
   @Input() right;
+  @Output() onPress = new EventEmitter<any>();
+  @Output() onRelease = new EventEmitter<any>();
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  mUp(btn:String) {
-    console.log('mUp:', btn);
+  mDown(btn:String) {
+    this.onPress.emit({name: this.name, action: btn});
   }
 
-  mDown(btn:String) {
-    console.log('mDown:', btn);
+  mUp(btn:String) {
+    this.onRelease.emit({name: this.name, action: btn});
   }
 }

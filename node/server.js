@@ -8,9 +8,9 @@ const Pack = require('./package');
 const cron = require('node-cron');
 const serialport = require("serialport");
 
-const SocketController = require('./controllers/socketController');
-const OscController = require('./controllers/oscController');
-const SerialController = require('./controllers/serialController');
+const SocketController = require('./controllers/socket.controller');
+//const OscController = require('./controllers/osc.controller');
+const SerialController = require('./controllers/serial.controller');
 
 // Create a server with a host and port
 const server = new Hapi.Server();
@@ -78,7 +78,7 @@ server.register(require('inert'), (err) => {
 
       const io = require('socket.io')(server.listener);
       SocketController.init(io);
-      OscController.listen();
+      //OscController.listen();
       SerialController.init();
     }
   });

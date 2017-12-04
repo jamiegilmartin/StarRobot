@@ -72,7 +72,7 @@
     <!-- <div class="driverMode">Automatic</div> -->
 
     <section class="alerts">
-      <!-- <p>Auto-break Activated!</p> -->
+      <p>{{alert}}</p>
     </section>
   </section>
 
@@ -83,11 +83,18 @@
       [down]="'s'"
       [left]="'a'"
       [right]="'d'"
+      (onPress)="press($event)"
+      (onRelease)="release($event)"
       class="driverController"></app-joystick>
+
     <app-joystick
     [name]="'track'"
+    (onPress)="press($event)"
+    (onRelease)="release($event)"
     class="trackerController"></app-joystick>
+
     <div class="btn break">break</div>
+
   </footer>
 
 
