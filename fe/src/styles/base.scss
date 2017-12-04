@@ -1,0 +1,47 @@
+@import './variables';
+@import './mixins';
+
+body {
+  font-family: $font-source-code;
+  font-size: 10px;
+  font-weight: 200;
+  margin: 0;
+  padding: 0;
+}
+h1, h2, h3, h4, h5, h6 {
+  //font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+}
+
+.sm {
+  font-size: 10px;
+}
+
+
+
+#chart {
+  path {
+    fill: none;
+    stroke: #999;
+  }
+  .bar {
+    fill: $green;
+  }
+
+  .bar:hover {
+    fill: $grey;
+    cursor: pointer;
+  }
+
+  .axis--x path {
+    display: none;
+  }
+}
+
+
+
+.ipp-page {
+  width: 75%;
+  margin: 0 auto;
+  padding-bottom: 100px;
+}

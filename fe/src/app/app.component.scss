@@ -1,0 +1,9 @@
+@import "~styles/variables";
+@import "~styles/mixins";
+
+:host {
+  display: block;
+}
+.main {
+  padding: 0 0 100px 0;
+}

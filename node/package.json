@@ -1,0 +1,49 @@
+{
+  "name": "starrobot",
+  "version": "1.0.1",
+  "description": "UI and Arduino Code for S.T.A.R. Robot",
+  "author": "Jamie Gilmartin <jamiegilmartin@gmail.com>",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jamiegilmartin/StarRobot.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jamiegilmartin/StarRobot/issues"
+  },
+  "homepage": "https://github.com/jamiegilmartin/StarRobot#readme",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server",
+    "watch": "supervisor server",
+    "test": "NODE_ENV=test node node_modules/lab/bin/lab -v -L -C -D -c -t 85",
+    "test-cov-html": "lab -r html -o coverage.html"
+  },
+  "keywords": [
+    "Arduino",
+    "Solar",
+    "Tracking"
+  ],
+  "dependencies": {
+    "boom": "^5.2.0",
+    "chalk": "^2.1.0",
+    "dgram": "^1.0.1",
+    "fs": "^0.0.1-security",
+    "hapi": "^16.6.0",
+    "hapi-swagger": "^7.8.1",
+    "inert": "^4.2.1",
+    "mespeak": "^2.0.1",
+    "node-cron": "^1.2.1",
+    "node-osc": "^2.1.0",
+    "osc-min": "^1.1.1",
+    "rxjs": "^5.4.3",
+    "serialport": "^6.0.4",
+    "socket.io": "^2.0.3"
+  },
+  "devDependencies": {
+    "code": "^4.0.0",
+    "eslint": "^3.19.0",
+    "lab": "^13.1.0",
+    "supervisor": "^0.12.0"
+  }
+}
