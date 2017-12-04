@@ -70,7 +70,7 @@ var AppComponent = (function () {
     };
     AppComponent.prototype.press = function (joystick) {
         console.log('press', joystick.name, joystick.action);
-        this.socketService;
+        this.socketService.send(joystick.name, joystick.action);
     };
     AppComponent.prototype.release = function (joystick) {
         console.log('release', joystick.name, joystick.action);
@@ -178,17 +178,9 @@ var SocketService = (function () {
             console.log('userDisconnected', data);
         });
     };
-    SocketService.prototype.train = function (type) {
-        this.socket.emit('train', { type: type });
-    };
-    SocketService.prototype.stopTraining = function (type) {
-        this.socket.emit('stopTraining', { type: type });
-    };
-    SocketService.prototype.clear = function () {
-        this.socket.emit('clear', {});
-    };
-    SocketService.prototype.go = function () {
-        this.socket.emit('go', {});
+    SocketService.prototype.send = function (name, action) {
+        console.log('socket send', name, action);
+        this.socket.emit(name, { name: action });
     };
     SocketService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["w" /* Injectable */])(),

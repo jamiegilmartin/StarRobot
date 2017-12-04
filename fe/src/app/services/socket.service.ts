@@ -6,7 +6,6 @@ export class SocketService {
   socket: any;  // tslint:disable-line:no-any
   callback: any;  // tslint:disable-line:no-any
   constructor() {
-
     this.socket = io.connect( );
     this.listen();
   }
@@ -28,17 +27,9 @@ export class SocketService {
     });
   }
 
-  train(type: number) {
-    this.socket.emit('train', {type: type });
-  }
-  stopTraining(type: number) {
-    this.socket.emit('stopTraining', {type: type });
-  }
-  clear() {
-    this.socket.emit('clear', {});
-  }
-  go() {
-    this.socket.emit('go', {});
+  send( name: String, action: String ) {
+    console.log('socket send', name, action);
+    this.socket.emit(name, { name : action });
   }
 
 }

@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
 
   press(joystick: any) {
     console.log('press', joystick.name, joystick.action);
-    this.socketService
+    this.socketService.send(joystick.name, joystick.action);
   }
 
   release(joystick: any){
