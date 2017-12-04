@@ -1,0 +1,33 @@
+@import './variables';
+
+//sizing
+@mixin fill() {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+@mixin goldenV($a) {
+  width: $a + px;
+  height: $a * 1.61803398874989484820 + px;
+}
+@mixin goldenH($a) {
+  height: $a + px;
+  width: $a * 1.61803398874989484820 + px;
+}
+
+//custom
+@mixin profilePic($profilePicD: 48px) {
+  display: block;
+  margin: 5px 0;
+  width: $profilePicD;
+  height: $profilePicD;
+  overflow: hidden;
+  border-radius: $profilePicD;
+  border: 2px solid $blue-btn;
+}
+
+@mixin thin {
+  font-weight: 100;
+}

@@ -3,16 +3,20 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
-
+import { SocketService } from './services/socket.service';
+import { JoystickComponent } from './shared/joystick/joystick.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    JoystickComponent
   ],
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [
+    SocketService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,12 @@
+<div class="controller driverController">
+  <p>{{name}}</p>
+  <div (mousedown)="mDown('up')" (mouseup)="mUp('up')" class="btn up" *ngIf="up">{{up}}</div>
+  <div (mousedown)="mDown('down')" (mouseup)="mUp('down')" class="btn down"*ngIf="down">{{down}}</div>
+  <div (mousedown)="mDown('left')" (mouseup)="mUp('left')" class="btn left" *ngIf="left">{{left}}</div>
+  <div (mousedown)="mDown('right')" (mouseup)="mUp('right')" class="btn right" *ngIf="right">{{right}}</div>
+
+  <div (mousedown)="mDown('up')" (mouseup)="mUp('up')" class="btn up" *ngIf="!up">&#8593;</div>
+  <div (mousedown)="mDown('down')" (mouseup)="mUp('down')" class="btn down" *ngIf="!down">&#8595;</div>
+  <div (mousedown)="mDown('left')" (mouseup)="mUp('left')" class="btn left" *ngIf="!left">&#8592;</div>
+  <div (mousedown)="mDown('right')" (mouseup)="mUp('right')" class="btn right" *ngIf="!right">&#8594;</div>
+</div>
