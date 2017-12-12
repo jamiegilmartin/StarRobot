@@ -77,7 +77,9 @@ server.register(require('inert'), (err) => {
       const io = require('socket.io')(server.listener);
       SocketController.init(io);
       SerialController.init();
-      CameraController.init();
+      CameraController.init(1000, (path) => {
+        SocketController.send(io, 'newImage', path);
+      });
     }
   });
 });

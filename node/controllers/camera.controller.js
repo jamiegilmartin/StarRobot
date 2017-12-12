@@ -1,59 +1,51 @@
-var terminal = require('child_process').spawn('bash');
-var fs = require('fs');
+const terminal = require('child_process').spawn('bash');
+const SocketController = require('./socket.controller');
+const fs = require('fs');
 
 /**
  * imageCapture for pi Camera
  * @description time lapse and image capture
  * @param delay
  */
-module.exports.init = function(delay){
+module.exports.init = function(delay, callback){
 	var self = this;
-  this.output = '~/Documents/Arduino/StarRobot/node/public/assets';
-  this.directory = this.output;
+  this.directory = '~/Documents/Arduino/StarRobot/node/public/assets';
   this.delay = delay || 10000;
-  this.increment = 0;
-  this.maxPics = 1000; //TODO:
-  this.timer = null;
   this.stopped = false;
   this.images = [];
-
-  this.start();
+  this.callback = callback;
+  this.increment = 0;
+  this.takePic();
 };
 
-module.exports.start = function(){
-  var self = this;
-  this.timer = setInterval(function(){
-    if(!self.stopped){
-      self.takePic();
+module.exports.loop = function(){
+  setTimeout(()=>{
+    if(!this.stopped){
+      this.takePic();
     }
-  },this.delay);
+  }, this.delay);
 };
 
 module.exports.stop = function(){
   this.stopped = true;
-  clearInterval(this.timer);//process keeps running if you don't clear
+  terminal.stdin.end();
 };
 
 module.exports.takePic = function(){
-  var date = new Date(),
-    fileName = "timeLapse-img_"+this.increment +"_date-"+(date.getMonth()+1)+"-"+date.getDate()+"-"+date.getFullYear()+"_"+date.getHours()+"-"+date.getMinutes()+"-"+date.getSeconds()+".jpg",
-    path = this.directory+"/"+fileName
-    command = "raspistill -o "+ path;
+  const date = new Date();
+  let fileName = "timeLapse-img_"+this.increment +"_date-"+(date.getMonth()+1)+"-"+date.getDate()+"-"+date.getFullYear()+"_"+date.getHours()+"-"+date.getMinutes()+"-"+date.getSeconds()+".jpg";
+  let path = this.directory+"/"+fileName
+  let command = "raspistill -o "+ path;
 
-  if(this.increment < this.maxPics){
-    console.log('take pic',terminal.pid,this.increment,command)
+  console.log('take pic',terminal.pid,this.increment,command)
 
-    this.images.push(fileName);
+  this.images.push(fileName);
 
-    //command
-    terminal.stdin.write(command+'\n');
-  }else{
-    console.log('reached the max');
-    this.stop();
-    terminal.stdin.end();
-  }
-
-  this.increment += 1;
+  //command
+  terminal.stdin.write(command+'\n');
+  this.callback( path );
+  this.increment ++;
+  this.loop();
 };
 
 

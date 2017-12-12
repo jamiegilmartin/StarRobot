@@ -70,6 +70,7 @@ var AppComponent = (function () {
     AppComponent.prototype.ngOnInit = function () {
         this.canvas = this.viewer.nativeElement.getContext('2d');
         console.log('canvas', this.canvas);
+        this.listen();
         this.setImage('/assets/etv.jpg');
     };
     /**

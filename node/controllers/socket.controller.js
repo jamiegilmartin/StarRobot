@@ -1,10 +1,7 @@
 const chalk = require('chalk');
 const SerialController = require('./serial.controller');
-var io;
 
 module.exports.init = function(io) {
-  io = io;
-
   //test serial
   //var serial = {write:function(f){console.log(f)}};
 
@@ -78,6 +75,6 @@ module.exports.init = function(io) {
   });
 };
 
-module.exports.send = function(what, obj) {
+module.exports.send = function(io, what, obj) {
   io.sockets.emit(what, obj );
 };
