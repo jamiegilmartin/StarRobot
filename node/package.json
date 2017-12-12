@@ -27,6 +27,7 @@
   "dependencies": {
     "boom": "^5.2.0",
     "chalk": "^2.1.0",
+    "cron": "^1.3.0",
     "dgram": "^1.0.1",
     "fs": "^0.0.1-security",
     "hapi": "^16.6.0",

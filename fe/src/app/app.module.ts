@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
-import { SocketService } from './services/socket.service';
 import { JoystickComponent } from './shared/joystick/joystick.component';
 
 @NgModule({
@@ -15,7 +14,7 @@ import { JoystickComponent } from './shared/joystick/joystick.component';
     BrowserModule
   ],
   providers: [
-    SocketService
+
   ],
   bootstrap: [AppComponent]
 })

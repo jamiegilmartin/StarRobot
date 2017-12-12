@@ -1,3 +1,4 @@
+/*
 void Ping(){
 	//HC-SR04 Ping distance sensor
 	long duration, distance;
@@ -17,3 +18,4 @@ void Ping(){
 		Serial.println(" cm");
 	}
 }
+*/

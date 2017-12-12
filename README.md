@@ -9,8 +9,20 @@ npm i --save body-parser cookie-parser express express-handlebars express-sessio
 ```
 
 
+### Arduino
 
+## Motor
+https://www.luisllamas.es/wp-content/uploads/2016/08/arduino-TB6612FNG-esquema.png
 ***
+## Tri LED
+https://learn.sparkfun.com/tutorials/sik-experiment-guide-for-arduino---v32/experiment-3-driving-an-rgb-led
+
+## Soft Pot
+https://learn.sparkfun.com/tutorials/softpot-hookup-guide
+
+
+
+
 
 ####Pi Setup
 
@@ -41,3 +53,43 @@ Arduino Command line tool http://inotool.org/ https://github.com/amperka/ino/iss
 Find SerialPort
 
 `dmesg | grep tty` http://www.instructables.com/id/Read-and-write-from-serial-port-with-Raspberry-Pi/
+
+
+mintyboost
+https://cdn-learn.adafruit.com/downloads/pdf/minty-boost.pdf
+
+
+
+https://github.com/fivdi/onoff
+
+
+https://www.modmypi.com/blog/hc-sr04-ultrasonic-range-sensor-on-the-raspberry-pi
+
+http://www.instructables.com/id/How-to-use-a-Flex-Sensor-Arduino-Tutorial/
+
+
+https://learn.sparkfun.com/tutorials/flex-sensor-hookup-guide
+https://learn.sparkfun.com/tutorials/softpot-hookup-guide
+https://learn.sparkfun.com/tutorials/sik-experiment-guide-for-arduino---v32/experiment-3-driving-an-rgb-led
+
+https://www.google.de/imgres?imgurl=https://cdn.sparkfun.com/assets/learn_tutorials/3/1/0/Arduino_circuit_02_01.png&imgrefurl=https://learn.sparkfun.com/tutorials/sik-experiment-guide-for-arduino---v32/experiment-3-driving-an-rgb-led&h=1047&w=2073&tbnid=0JOh5K_lyKoXOM:&tbnh=106&tbnw=211&usg=__ZsTk9E7N3HKe04De-blwpHl5PK4%3D&vet=10ahUKEwj3jfvruPHXAhViOpoKHZQQBVIQ9QEIKzAA..i&docid=X0LiPY1KB_U2wM&sa=X&ved=0ahUKEwj3jfvruPHXAhViOpoKHZQQBVIQ9QEIKzAA
+
+https://thepihut.com/blogs/raspberry-pi-tutorials/17841464-bluetooth-installing-and-using-bluetooth-on-the-raspberry-pi
+
+
+//temp
+http://www.circuitbasics.com/how-to-set-up-the-dht11-humidity-sensor-on-the-raspberry-pi/
+https://randomnerdtutorials.com/complete-guide-for-dht11dht22-humidity-and-temperature-sensor-with-arduino/
+
+https://i0.wp.com/randomnerdtutorials.com/wp-content/uploads/2015/05/humidity_schematics.jpg
+
+//motor controller
+https://learn.sparkfun.com/tutorials/tb6612fng-hookup-guide?_ga=2.28578495.2097010660.1512461733-1721556105.1510742216
+https://www.luisllamas.es/wp-content/uploads/2016/08/arduino-TB6612FNG-esquema.png
+
+
+
+batteries
+http://www.instructables.com/id/Arduino-Battery-Voltage-Indicator/
+
+

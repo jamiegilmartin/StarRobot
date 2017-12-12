@@ -1,20 +1,25 @@
 #include <Servo.h>
 
-//ping pins
-#define trigPin 13
-#define echoPin 12
+////ping pins
+//#define trigPin 13
+//#define echoPin 12
 
+const int SOFT_POT_PIN = A0;
+
+const int RED_PIN = 4;
+const int GREEN_PIN = 13;
+const int BLUE_PIN = 12;
 
 //motor pins
-int STBY = 2; //standby
+const int STBY = 2; //standby
 //Motor A
-int PWMA = 3; //Speed control 
-int AIN1 = 9; //Direction
-int AIN2 = 8; //Direction
+const int PWMA = 3; //Speed control 
+const int AIN1 = 9; //Direction
+const int AIN2 = 8; //Direction
 //Motor B
-int PWMB = 5; //Speed control
-int BIN1 = 7; //Direction
-int BIN2 = 6; //Direction
+const int PWMB = 5; //Speed control
+const int BIN1 = 7; //Direction
+const int BIN2 = 6; //Direction
 
 //create servo objects
 Servo horizontalServo; //11
@@ -27,11 +32,17 @@ int trackerDegreeInterval = 10;
 int pos = 0;
 
 void setup(){
+	while(!Serial);
 	Serial.begin(9600);
-
-	//ping
-	pinMode(trigPin, OUTPUT);
-	pinMode(echoPin, INPUT);
+  //soft pot
+  pinMode(SOFT_POT_PIN, INPUT);
+  //led
+  pinMode(RED_PIN, OUTPUT);
+  pinMode(GREEN_PIN, OUTPUT);
+  pinMode(BLUE_PIN, OUTPUT);
+//	//ping
+//	pinMode(trigPin, OUTPUT);
+//	pinMode(echoPin, INPUT);
 	//motors
 	pinMode(STBY, OUTPUT);
 	//Motor A
@@ -53,12 +64,38 @@ void setup(){
 }
 
 void loop(){
-  //delay(2000);
-
+// Read in the soft pot's ADC value
+  int softPotADC = analogRead(SOFT_POT_PIN);
+  // Map the 0-1023 value to 0-40
+  //int softPotPosition = map(softPotADC, 0, 1023, 0, 100);
+  Serial.println("softpot " + String(softPotADC));
   
-  serialIn();
-	Ping();
-  test();
+  digitalWrite(RED_PIN, LOW);
+  digitalWrite(GREEN_PIN, HIGH);
+  digitalWrite(BLUE_PIN, LOW);
+
+  delay(500);
+
+  digitalWrite(RED_PIN, HIGH);
+  digitalWrite(GREEN_PIN, LOW);
+  digitalWrite(BLUE_PIN, LOW);
+
+  delay(500);
+
+  digitalWrite(RED_PIN, LOW);
+  digitalWrite(GREEN_PIN, LOW);
+  digitalWrite(BLUE_PIN, HIGH);
+
+  delay(500);
+
+  //forward
+  motorMove(1, 5, 1); //motor 1, full speed, left
+  motorMove(2, 5, 0); //motor 2, full speed, right
+
+  Serial.println("tracker up");
+  //serialIn();
+	//Ping();
+  //test();
 }
 void serialIn() {
 	//have arduino wait to receive input
@@ -146,7 +183,7 @@ void test(){
     delay(105);
   }
   for (pos = 180; pos >= 90; pos -= 1) {
-    horizontalServo.write(pos);
+    verticalServo.write(pos);
     Serial.println(pos);
     delay(105);
   }
