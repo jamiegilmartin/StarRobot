@@ -83,8 +83,8 @@ void loop(){
 	if(serialVal == 1){
 		Serial.println("driver forward");
 		//forward
-		motorMove(1, 255, 1); //motor 1, full speed, left
-		motorMove(2, 255, 1); //motor 2, full speed, right
+		motorMove(1, 255, 0); //motor 1, full speed, left
+		motorMove(2, 255, 0); //motor 2, full speed, right
 
 		digitalWrite(RED_PIN, LOW);
   	digitalWrite(GREEN_PIN, HIGH);
@@ -93,8 +93,8 @@ void loop(){
 	if(serialVal == 2){
 		Serial.println("driver back");
 		//back
-		motorMove(1, 255, 0); //motor 1, full speed, right
-		motorMove(2, 255, 0); //motor 2, full speed, left
+		motorMove(1, 255, 1); //motor 1, full speed, right
+		motorMove(2, 255, 1); //motor 2, full speed, left
 
 		digitalWrite(RED_PIN, HIGH);
 		digitalWrite(GREEN_PIN, LOW);
@@ -104,7 +104,7 @@ void loop(){
 		Serial.println("driver right");
 		//right
 		//motorMove(1, 128, 0); //motor 1, half speed, left
-		motorMove(2, 128, 1); //motor 2, half speed, left
+		motorMove(2, 128, 0); //motor 2, half speed, left
 
 		digitalWrite(RED_PIN, HIGH);
   	digitalWrite(GREEN_PIN, LOW);
@@ -113,7 +113,7 @@ void loop(){
 	if(serialVal == 4){
 		Serial.println("driver left");
 		//left
-		motorMove(1, 128, 1); //motor 1, half speed, left
+		motorMove(1, 128, 0); //motor 1, half speed, left
 		//motorMove(2, 128, 0); //motor 2, half speed, left
 		
 		digitalWrite(RED_PIN, LOW);
