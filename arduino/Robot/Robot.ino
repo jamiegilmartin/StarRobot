@@ -55,20 +55,69 @@ void setup(){
 	pinMode(BIN2, OUTPUT);
   
 	//servos
-	horizontalServo.attach(10);
-	verticalServo.attach(11);
+	// horizontalServo.attach(10);
+	// verticalServo.attach(11);
 
-	verticalInterval = 0;
-	horizontalInterval = 0;
+	// verticalInterval = 0;
+	// horizontalInterval = 0;
 
 }
 
 void loop(){
+	//have arduino wait to receive input
+	while(Serial.available() == 0 );
+	
+	//read input
+	int serialVal = Serial.read() - '0';
+
+
+		//driver
+	//motor1 = left | motor 2 = right
+	if(serialVal == 0){
+		Serial.println("driver forward");
+		//forward
+		motorMove(1, 255, 1); //motor 1, full speed, left
+		motorMove(2, 255, 0); //motor 2, full speed, right
+
+		digitalWrite(RED_PIN, LOW);
+  	digitalWrite(GREEN_PIN, HIGH);
+  	digitalWrite(BLUE_PIN, LOW);
+	}
+	if(serialVal == 1){
+		Serial.println("driver back");
+		//back
+		motorMove(1, 255, 0); //motor 1, full speed, right
+		motorMove(2, 255, 1); //motor 2, full speed, left
+
+		digitalWrite(RED_PIN, HIGH);
+		digitalWrite(GREEN_PIN, LOW);
+		digitalWrite(BLUE_PIN, LOW);
+	}
+	// else if(serialVal == 6){
+	// 	Serial.println("driver right");
+	// 	//right
+	// 	//motorMove(1, 128, 1); //motor 1, half speed, left
+	// 	motorMove(2, 128, 0); //motor 2, half speed, left
+	// }
+	// else if(serialVal == 7){
+	// 	Serial.println("driver left");
+	// 	//left
+	// 	motorMove(1, 128, 1); //motor 1, half speed, left
+	// 	//motorMove(2, 128, 0); //motor 2, half speed, left
+		
+	// }else if(serialVal == 8){
+	// 	Serial.println("driver stop");
+	// 	motorStop();
+	// }
+	Serial.flush();
+}
+
+void XXXloop(){
 // Read in the soft pot's ADC value
   int softPotADC = analogRead(SOFT_POT_PIN);
   // Map the 0-1023 value to 0-40
   //int softPotPosition = map(softPotADC, 0, 1023, 0, 100);
-  Serial.println("softpot " + String(softPotADC));
+  //Serial.println("softpot " + String(softPotADC));
   
   digitalWrite(RED_PIN, LOW);
   digitalWrite(GREEN_PIN, HIGH);
@@ -90,12 +139,11 @@ void loop(){
 
   //forward
   motorMove(1, 5, 1); //motor 1, full speed, left
-  motorMove(2, 5, 0); //motor 2, full speed, right
+  motorMove(2, 5, 1); //motor 2, full speed, right
 
-  Serial.println("tracker up");
-  serialIn();
+  //serialIn();
 	//Ping();
-  test();
+  //test();
 }
 void serialIn() {
 	//have arduino wait to receive input
