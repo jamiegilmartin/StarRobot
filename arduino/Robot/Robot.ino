@@ -7,7 +7,7 @@
 const int SOFT_POT_PIN = A0;
 
 const int RED_PIN = 4;
-const int GREEN_PIN = 13;
+const int GREEN_PIN = 11;//13;
 const int BLUE_PIN = 12;
 
 //motor pins
