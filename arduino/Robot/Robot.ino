@@ -7,7 +7,7 @@
 const int SOFT_POT_PIN = A0;
 
 const int RED_PIN = 4;
-const int GREEN_PIN = 11;//13;
+const int GREEN_PIN = 13;
 const int BLUE_PIN = 12;
 
 //motor pins
@@ -55,11 +55,11 @@ void setup(){
 	pinMode(BIN2, OUTPUT);
   
 	//servos
-	// horizontalServo.attach(10);
-	// verticalServo.attach(11);
+	horizontalServo.attach(10);
+	verticalServo.attach(11);
 
-	// verticalInterval = 0;
-	// horizontalInterval = 0;
+	verticalInterval = 0;
+	horizontalInterval = 0;
 
 }
 
@@ -137,51 +137,10 @@ void loop(){
   	digitalWrite(GREEN_PIN, HIGH);
   	digitalWrite(BLUE_PIN, HIGH);
 	}
-	Serial.flush();
-}
 
-void XXXloop(){
-// Read in the soft pot's ADC value
-  int softPotADC = analogRead(SOFT_POT_PIN);
-  // Map the 0-1023 value to 0-40
-  //int softPotPosition = map(softPotADC, 0, 1023, 0, 100);
-  //Serial.println("softpot " + String(softPotADC));
-  
-  digitalWrite(RED_PIN, LOW);
-  digitalWrite(GREEN_PIN, HIGH);
-  digitalWrite(BLUE_PIN, LOW);
 
-  delay(100);
-
-  digitalWrite(RED_PIN, HIGH);
-  digitalWrite(GREEN_PIN, LOW);
-  digitalWrite(BLUE_PIN, LOW);
-
-  delay(100);
-
-  digitalWrite(RED_PIN, LOW);
-  digitalWrite(GREEN_PIN, LOW);
-  digitalWrite(BLUE_PIN, HIGH);
-
-  delay(100);
-
-  //forward
-  motorMove(1, 5, 1); //motor 1, full speed, left
-  motorMove(2, 5, 1); //motor 2, full speed, right
-
-  //serialIn();
-	//Ping();
-  //test();
-}
-void serialIn() {
-	//have arduino wait to receive input
-	while(Serial.available() == 0 );
-	
-	//read input
-	int serialVal = Serial.read() - '0';
-
-	//tracker
-	if(serialVal == 0){
+		//tracker
+	if(serialVal == 5){
 		Serial.println("tracker up");
 		
 		//down inverted
@@ -190,7 +149,7 @@ void serialIn() {
 			verticalInterval -= trackerDegreeInterval;
 		}
 	}
-	else if(serialVal == 1){
+	if(serialVal == 6){
 		Serial.println("tracker down");
 		//up inverted
 		if(verticalInterval < 180){
@@ -198,7 +157,7 @@ void serialIn() {
 			verticalInterval += trackerDegreeInterval;
 		}
 	}
-	else if(serialVal == 2){
+	if(serialVal == 7){
 		Serial.println("tracker right");
 		//left
 		if(horizontalInterval > 0){
@@ -206,7 +165,7 @@ void serialIn() {
 			horizontalInterval -= trackerDegreeInterval;
 		}
 	}
-	else if(serialVal == 3){
+	if(serialVal == 8){
 		Serial.println("tracker left");
 		
 		//right
@@ -215,103 +174,8 @@ void serialIn() {
 			horizontalInterval += trackerDegreeInterval;
 		}
 	}
-	//driver
-	//motor1 = left | motor 2 = right
-	else if(serialVal == 4){
-		Serial.println("driver forward");
-		//forward
-		motorMove(1, 255, 1); //motor 1, full speed, left
-		motorMove(2, 255, 0); //motor 2, full speed, right
-	}
-	else if(serialVal == 5){
-		Serial.println("driver back");
-		//back
-		motorMove(1, 255, 0); //motor 1, full speed, right
-		motorMove(2, 255, 1); //motor 2, full speed, left
-	}
-	else if(serialVal == 6){
-		Serial.println("driver right");
-		//right
-		//motorMove(1, 128, 1); //motor 1, half speed, left
-		motorMove(2, 128, 0); //motor 2, half speed, left
-	}
-	else if(serialVal == 7){
-		Serial.println("driver left");
-		//left
-		motorMove(1, 128, 1); //motor 1, half speed, left
-		//motorMove(2, 128, 0); //motor 2, half speed, left
-		
-	}else if(serialVal == 8){
-		Serial.println("driver stop");
-		motorStop();
-	}
 	Serial.flush();
 }
 
-void test(){
-    
-  horizontalServo.write(90);
-  verticalServo.write(180);
-  /*
-  for (pos = 90; pos <= 180; pos += 1) { 
-    horizontalServo.write(pos);
-    Serial.println(pos);
-  }
-  for (pos = 180; pos >= 90; pos -= 1) {
-    verticalServo.write(pos);
-    Serial.println(pos);
-    delay(105);
-  }
-  
-    
-  horizontalServo.write(45);
-  delay(500); 
-  horizontalServo.write(120);
-  delay(500); 
-*/
- 
-  verticalServo.write(0);
-  delay(500);
-  verticalServo.write(180);
-  delay(500); 
-  
- /*
-  
-  horizontalServo.write(45);
-  delay(250); 
-  horizontalServo.write(65);
-  delay(250);
-  horizontalServo.write(25);
-  delay(250); 
-  horizontalServo.write(90);
-  delay(250); 
-
-  
-  verticalServo.write(0);
-  delay(250);
-  verticalServo.write(45);
-  delay(250); 
-  verticalServo.write(90);
-  delay(250); 
-  verticalServo.write(180);
-  delay(250); 
-
-
-  motorMove(1, 128, 1); //motor 1, full speed, left
-  motorMove(2, 128, 0); //motor 2, full speed, left
-
-  delay(250); //go for 1 second
-  motorStop(); //stop
-  
-  delay(250);
-  
-  motorMove(1, 128, 0); //motor 1, full speed, left
-  motorMove(2, 128, 1); //motor 2, full speed, left
-  
-  delay(250); //go for 1 second
-  motorStop(); //stop
-*/
-
-}
 
 
