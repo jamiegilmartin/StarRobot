@@ -22,8 +22,8 @@ const int BIN1 = 7; //Direction
 const int BIN2 = 6; //Direction
 
 //create servo objects
-Servo horizontalServo; //11
-Servo verticalServo; //10
+Servo horizontalServo; //10
+Servo verticalServo; //11
 
 int verticalInterval;
 int horizontalInterval;
@@ -55,8 +55,8 @@ void setup(){
 	pinMode(BIN2, OUTPUT);
   
 	//servos
-	horizontalServo.attach(11);
-	verticalServo.attach(10);
+	horizontalServo.attach(10);
+	verticalServo.attach(11);
 
 	verticalInterval = 0;
 	horizontalInterval = 0;
@@ -74,28 +74,28 @@ void loop(){
   digitalWrite(GREEN_PIN, HIGH);
   digitalWrite(BLUE_PIN, LOW);
 
-  delay(500);
+  delay(100);
 
   digitalWrite(RED_PIN, HIGH);
   digitalWrite(GREEN_PIN, LOW);
   digitalWrite(BLUE_PIN, LOW);
 
-  delay(500);
+  delay(100);
 
   digitalWrite(RED_PIN, LOW);
   digitalWrite(GREEN_PIN, LOW);
   digitalWrite(BLUE_PIN, HIGH);
 
-  delay(500);
+  delay(100);
 
   //forward
   motorMove(1, 5, 1); //motor 1, full speed, left
   motorMove(2, 5, 0); //motor 2, full speed, right
 
   Serial.println("tracker up");
-  //serialIn();
+  serialIn();
 	//Ping();
-  //test();
+  test();
 }
 void serialIn() {
 	//have arduino wait to receive input
@@ -176,11 +176,10 @@ void test(){
     
   horizontalServo.write(90);
   verticalServo.write(180);
-  
+  /*
   for (pos = 90; pos <= 180; pos += 1) { 
     horizontalServo.write(pos);
     Serial.println(pos);
-    delay(105);
   }
   for (pos = 180; pos >= 90; pos -= 1) {
     verticalServo.write(pos);
@@ -188,7 +187,19 @@ void test(){
     delay(105);
   }
   
-/*
+    
+  horizontalServo.write(45);
+  delay(500); 
+  horizontalServo.write(120);
+  delay(500); 
+*/
+ 
+  verticalServo.write(0);
+  delay(500);
+  verticalServo.write(180);
+  delay(500); 
+  
+ /*
   
   horizontalServo.write(45);
   delay(250); 
