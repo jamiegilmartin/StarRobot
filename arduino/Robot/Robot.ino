@@ -70,6 +70,23 @@ void loop(){
 	//read input
 	int serialVal = Serial.read() - '0';
 
+	// test light cycle
+  digitalWrite(RED_PIN, LOW);
+  digitalWrite(GREEN_PIN, HIGH);
+  digitalWrite(BLUE_PIN, LOW);
+
+  delay(100);
+
+  digitalWrite(RED_PIN, HIGH);
+  digitalWrite(GREEN_PIN, LOW);
+  digitalWrite(BLUE_PIN, LOW);
+
+  delay(100);
+
+  digitalWrite(RED_PIN, LOW);
+  digitalWrite(GREEN_PIN, LOW);
+  digitalWrite(BLUE_PIN, HIGH);
+
 	//driver
 	//motor1 = left | motor 2 = right
 	if(serialVal == 0){
