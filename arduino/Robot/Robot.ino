@@ -70,45 +70,56 @@ void loop(){
 	//read input
 	int serialVal = Serial.read() - '0';
 
-
-		//driver
+	//driver
 	//motor1 = left | motor 2 = right
 	if(serialVal == 0){
+		Serial.println("driver stop");
+		motorStop();
+
+		digitalWrite(RED_PIN, LOW);
+  	digitalWrite(GREEN_PIN, LOW);
+  	digitalWrite(BLUE_PIN, HIGH);
+	}
+	if(serialVal == 1){
 		Serial.println("driver forward");
 		//forward
 		motorMove(1, 255, 1); //motor 1, full speed, left
-		motorMove(2, 255, 0); //motor 2, full speed, right
+		motorMove(2, 255, 1); //motor 2, full speed, right
 
 		digitalWrite(RED_PIN, LOW);
   	digitalWrite(GREEN_PIN, HIGH);
   	digitalWrite(BLUE_PIN, LOW);
 	}
-	if(serialVal == 1){
+	if(serialVal == 2){
 		Serial.println("driver back");
 		//back
 		motorMove(1, 255, 0); //motor 1, full speed, right
-		motorMove(2, 255, 1); //motor 2, full speed, left
+		motorMove(2, 255, 0); //motor 2, full speed, left
 
 		digitalWrite(RED_PIN, HIGH);
 		digitalWrite(GREEN_PIN, LOW);
 		digitalWrite(BLUE_PIN, LOW);
 	}
-	// else if(serialVal == 6){
-	// 	Serial.println("driver right");
-	// 	//right
-	// 	//motorMove(1, 128, 1); //motor 1, half speed, left
-	// 	motorMove(2, 128, 0); //motor 2, half speed, left
-	// }
-	// else if(serialVal == 7){
-	// 	Serial.println("driver left");
-	// 	//left
-	// 	motorMove(1, 128, 1); //motor 1, half speed, left
-	// 	//motorMove(2, 128, 0); //motor 2, half speed, left
+	if(serialVal == 3){
+		Serial.println("driver right");
+		//right
+		//motorMove(1, 128, 0); //motor 1, half speed, left
+		motorMove(2, 128, 1); //motor 2, half speed, left
+
+		digitalWrite(RED_PIN, HIGH);
+  	digitalWrite(GREEN_PIN, LOW);
+  	digitalWrite(BLUE_PIN, HIGH);
+	}
+	if(serialVal == 4){
+		Serial.println("driver left");
+		//left
+		motorMove(1, 128, 1); //motor 1, half speed, left
+		//motorMove(2, 128, 0); //motor 2, half speed, left
 		
-	// }else if(serialVal == 8){
-	// 	Serial.println("driver stop");
-	// 	motorStop();
-	// }
+		digitalWrite(RED_PIN, LOW);
+  	digitalWrite(GREEN_PIN, HIGH);
+  	digitalWrite(BLUE_PIN, HIGH);
+	}
 	Serial.flush();
 }
 
