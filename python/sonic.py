@@ -2,7 +2,7 @@ import RPi.GPIO as GPIO
 import time
 GPIO.setmode(GPIO.BCM)
 
-TRIG = 23
+TRIG = 26
 ECHO = 24
 
 GPIO.setup(TRIG,GPIO.OUT)
@@ -27,6 +27,6 @@ distance = pulse_duration * 17150
 
 distance = round(distance, 2)
 
-print "distance_",distance,"_cm"
+print "distance",distance,"cm"
 
 GPIO.cleanup()
