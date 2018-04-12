@@ -1,3 +1,6 @@
+// The number of microseconds it takes sound to travel 1cm at 20 degrees celcius
+//var MICROSECDONDS_PER_CM = 1e6/34321;
+
 /*
 void Ping(){
 	//HC-SR04 Ping distance sensor
