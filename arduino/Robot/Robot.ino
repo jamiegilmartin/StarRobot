@@ -10,6 +10,13 @@ const int RED_PIN = 4;
 const int GREEN_PIN = 13;
 const int BLUE_PIN = 12;
 
+
+//photo resistors - voltage dividers with 10k ohm 
+const int photoResistor_RL = 0; //right | left
+const int photoResistor_FB = 1; //front | back
+int degree_RL;
+int degree_FB;
+
 //motor pins
 const int STBY = 2; //standby
 //Motor A
@@ -20,6 +27,8 @@ const int AIN2 = 8; //Direction
 const int PWMB = 5; //Speed control
 const int BIN1 = 7; //Direction
 const int BIN2 = 6; //Direction
+
+int loopCount = 0;
 
 //create servo objects
 Servo horizontalServo; //10
@@ -40,6 +49,11 @@ void setup(){
   pinMode(RED_PIN, OUTPUT);
   pinMode(GREEN_PIN, OUTPUT);
   pinMode(BLUE_PIN, OUTPUT);
+
+  //photo resistors
+  pinMode(photoResistor_RL, INPUT);
+  pinMode(photoResistor_FB, INPUT);
+  
 //	//ping
 //	pinMode(trigPin, OUTPUT);
 //	pinMode(echoPin, INPUT);
@@ -64,28 +78,38 @@ void setup(){
 }
 
 void loop(){
+  loopCount += 1;
+  
 	//have arduino wait to receive input
 	while(Serial.available() == 0 );
 	
 	//read input
 	int serialVal = Serial.read() - '0';
 
-	// test light cycle
-  digitalWrite(RED_PIN, LOW);
-  digitalWrite(GREEN_PIN, HIGH);
-  digitalWrite(BLUE_PIN, LOW);
 
-  delay(100);
 
-  digitalWrite(RED_PIN, HIGH);
-  digitalWrite(GREEN_PIN, LOW);
-  digitalWrite(BLUE_PIN, LOW);
+  //photo resistors
+  degree_RL = map(analogRead(photoResistor_RL),0,1023,0,179);
+  degree_FB = map(analogRead(photoResistor_FB),0,1023,0,179);
 
-  delay(100);
-
-  digitalWrite(RED_PIN, LOW);
-  digitalWrite(GREEN_PIN, LOW);
-  digitalWrite(BLUE_PIN, HIGH);
+  Serial.println("RL_" + String(degree_RL));
+  Serial.println("FB_" + String(degree_RL));
+//	// test light cycle
+//  digitalWrite(RED_PIN, LOW);
+//  digitalWrite(GREEN_PIN, HIGH);
+//  digitalWrite(BLUE_PIN, LOW);
+//
+//  //delay(100);
+//
+//  digitalWrite(RED_PIN, HIGH);
+//  digitalWrite(GREEN_PIN, LOW);
+//  digitalWrite(BLUE_PIN, LOW);
+//
+//  //delay(100);
+//
+//  digitalWrite(RED_PIN, LOW);
+//  digitalWrite(GREEN_PIN, LOW);
+//  digitalWrite(BLUE_PIN, HIGH);
 
 	//driver
 	//motor1 = left | motor 2 = right
