@@ -4,8 +4,6 @@
 //#define trigPin 13
 //#define echoPin 12
 
-const int SOFT_POT_PIN = A0;
-
 const int RED_PIN = 4;
 const int GREEN_PIN = 13;
 const int BLUE_PIN = 12;
@@ -43,8 +41,7 @@ int pos = 0;
 void setup(){
 	while(!Serial);
 	Serial.begin(9600);
-  //soft pot
-  pinMode(SOFT_POT_PIN, INPUT);
+ 
   //led
   pinMode(RED_PIN, OUTPUT);
   pinMode(GREEN_PIN, OUTPUT);
@@ -93,7 +90,8 @@ void loop(){
   degree_FB = map(analogRead(photoResistor_FB),0,1023,0,179);
 
   Serial.println("RL_" + String(degree_RL));
-  Serial.println("FB_" + String(degree_RL));
+  Serial.println("FB_" + String(degree_FB));
+  
 //	// test light cycle
 //  digitalWrite(RED_PIN, LOW);
 //  digitalWrite(GREEN_PIN, HIGH);
@@ -202,6 +200,8 @@ void loop(){
    
    Serial.println("tracker left: " + horizontalInterval);
 	}
+
+ 
 	Serial.flush();
 }
 
