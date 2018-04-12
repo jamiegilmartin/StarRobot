@@ -29,8 +29,8 @@ const int BIN2 = 6; //Direction
 int loopCount = 0;
 
 //create servo objects
-Servo horizontalServo; //10
-Servo verticalServo; //11
+Servo horizontalServo; //11
+Servo verticalServo; //10
 
 int verticalInterval;
 int horizontalInterval;
@@ -66,8 +66,8 @@ void setup(){
 	pinMode(BIN2, OUTPUT);
   
 	//servos
-	horizontalServo.attach(10);
-	verticalServo.attach(11);
+	horizontalServo.attach(11);
+	verticalServo.attach(10);
 
 	verticalInterval = 0;
 	horizontalInterval = 0;
@@ -86,8 +86,8 @@ void loop(){
 
 
   //photo resistors
-  degree_RL = map(analogRead(photoResistor_RL),0,1023,0,179);
-  degree_FB = map(analogRead(photoResistor_FB),0,1023,0,179);
+  degree_RL = map(analogRead(photoResistor_RL),0,1023,0,179); // left 0 | right 180
+  degree_FB = map(analogRead(photoResistor_FB),0,1023,0,179); // front 180 | back 0
 
   Serial.println("RL_" + String(degree_RL));
   Serial.println("FB_" + String(degree_FB));
