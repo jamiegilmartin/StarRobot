@@ -141,38 +141,42 @@ void loop(){
 
 		//tracker
 	if(serialVal == 5){
-		Serial.println("tracker up");
 		
 		//down inverted
 		if(verticalInterval > 0){
 			verticalServo.write( verticalInterval );
 			verticalInterval -= trackerDegreeInterval;
 		}
+   
+    Serial.println("tracker up : " + verticalInterval);
 	}
 	if(serialVal == 6){
-		Serial.println("tracker down");
 		//up inverted
 		if(verticalInterval < 180){
 			verticalServo.write( verticalInterval );
 			verticalInterval += trackerDegreeInterval;
 		}
+   
+   Serial.println("tracker down : " + verticalInterval);
 	}
 	if(serialVal == 7){
-		Serial.println("tracker right");
 		//left
 		if(horizontalInterval > 0){
 			horizontalServo.write( horizontalInterval );
 			horizontalInterval -= trackerDegreeInterval;
 		}
+   
+   Serial.println("tracker right : " + horizontalInterval);
 	}
 	if(serialVal == 8){
-		Serial.println("tracker left");
 		
 		//right
 		if(horizontalInterval < 180){
 			horizontalServo.write( horizontalInterval );
 			horizontalInterval += trackerDegreeInterval;
 		}
+   
+   Serial.println("tracker left: " + horizontalInterval);
 	}
 	Serial.flush();
 }
