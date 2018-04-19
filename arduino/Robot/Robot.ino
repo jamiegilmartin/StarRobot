@@ -1,19 +1,29 @@
 #include <Servo.h>
 
 ////ping pins
-//#define trigPin 13
-//#define echoPin 12
-
-const int RED_PIN = 4;
-const int GREEN_PIN = 13;
-const int BLUE_PIN = 12;
-
+#define trigPin 13
+#define echoPin 12
 
 //photo resistors - voltage dividers with 10k ohm 
 const int photoResistor_RL = 0; //right | left
 const int photoResistor_FB = 1; //front | back
 int degree_RL;
 int degree_FB;
+
+
+//smoothing - http://arduino.cc/en/Tutorial/Smoothing
+const int numReadings = 10;
+
+int RL_readings[numReadings];      // the readings from the analog input
+int RL_index = 0;                  // the index of the current reading
+int RL_total = 0;                  // the running total
+int RL_average = 0;                // the average
+
+int FB_readings[numReadings];
+int FB_index = 0;
+int FB_total = 0;
+int FB_average = 0;
+
 
 //motor pins
 const int STBY = 2; //standby
@@ -41,19 +51,15 @@ int pos = 0;
 void setup(){
 	while(!Serial);
 	Serial.begin(9600);
- 
-  //led
-  pinMode(RED_PIN, OUTPUT);
-  pinMode(GREEN_PIN, OUTPUT);
-  pinMode(BLUE_PIN, OUTPUT);
 
   //photo resistors
   pinMode(photoResistor_RL, INPUT);
   pinMode(photoResistor_FB, INPUT);
   
 //	//ping
-//	pinMode(trigPin, OUTPUT);
-//	pinMode(echoPin, INPUT);
+	pinMode(trigPin, OUTPUT);
+	pinMode(echoPin, INPUT);
+  
 	//motors
 	pinMode(STBY, OUTPUT);
 	//Motor A
@@ -83,81 +89,73 @@ void loop(){
 	//read input
 	int serialVal = Serial.read() - '0';
 
-
+  Ping();
 
   //photo resistors
-  degree_RL = map(analogRead(photoResistor_RL),0,1023,0,179); // left 0 | right 180
+  degree_RL = map(analogRead(photoResistor_RL),0,1023,0,179); // left 180 | right 0
   degree_FB = map(analogRead(photoResistor_FB),0,1023,0,179); // front 180 | back 0
 
-  Serial.println("RL_" + String(degree_RL));
-  Serial.println("FB_" + String(degree_FB));
+  /**
+   * ADD SMOOTHING 
+   */
+
+  //average RL
+  RL_total= RL_total - RL_readings[RL_index];
+  RL_readings[RL_index] = degree_RL;
+  RL_total= RL_total + RL_readings[RL_index];
+  RL_index = RL_index + 1;
+  if (RL_index >= numReadings){
+    RL_index = 0;
+  }              
   
-//	// test light cycle
-//  digitalWrite(RED_PIN, LOW);
-//  digitalWrite(GREEN_PIN, HIGH);
-//  digitalWrite(BLUE_PIN, LOW);
-//
-//  //delay(100);
-//
-//  digitalWrite(RED_PIN, HIGH);
-//  digitalWrite(GREEN_PIN, LOW);
-//  digitalWrite(BLUE_PIN, LOW);
-//
-//  //delay(100);
-//
-//  digitalWrite(RED_PIN, LOW);
-//  digitalWrite(GREEN_PIN, LOW);
-//  digitalWrite(BLUE_PIN, HIGH);
+  //average FB
+  FB_total= FB_total - FB_readings[FB_index];
+  FB_readings[FB_index] = degree_FB;
+  FB_total= FB_total + FB_readings[FB_index];
+  FB_index = FB_index + 1;                    
+  
+  if (FB_index >= numReadings){
+    FB_index = 0;
+  }                        
+
+  // calculate the average:
+  RL_average = RL_total / numReadings;
+  FB_average = FB_total / numReadings;
+  
+  
+  
+  Serial.println("RL_" + String(RL_average));
+  Serial.println("FB_" + String(FB_average));
+
 
 	//driver
 	//motor1 = left | motor 2 = right
 	if(serialVal == 0){
 		Serial.println("driver stop");
 		motorStop();
-
-		digitalWrite(RED_PIN, LOW);
-  	digitalWrite(GREEN_PIN, LOW);
-  	digitalWrite(BLUE_PIN, HIGH);
 	}
 	if(serialVal == 1){
 		Serial.println("driver forward");
 		//forward
 		motorMove(1, 255, 0); //motor 1, full speed, left
 		motorMove(2, 255, 0); //motor 2, full speed, right
-
-		digitalWrite(RED_PIN, LOW);
-  	digitalWrite(GREEN_PIN, HIGH);
-  	digitalWrite(BLUE_PIN, LOW);
 	}
 	if(serialVal == 2){
 		Serial.println("driver back");
 		//back
 		motorMove(1, 255, 1); //motor 1, full speed, right
 		motorMove(2, 255, 1); //motor 2, full speed, left
-
-		digitalWrite(RED_PIN, HIGH);
-		digitalWrite(GREEN_PIN, LOW);
-		digitalWrite(BLUE_PIN, LOW);
 	}
 	if(serialVal == 3){
 		Serial.println("driver right");
 		//right
 		//motorMove(1, 128, 0); //motor 1, half speed, left
 		motorMove(2, 128, 0); //motor 2, half speed, left
-
-		digitalWrite(RED_PIN, HIGH);
-  	digitalWrite(GREEN_PIN, LOW);
-  	digitalWrite(BLUE_PIN, HIGH);
 	}
 	if(serialVal == 4){
 		Serial.println("driver left");
 		//left
 		motorMove(1, 128, 0); //motor 1, half speed, left
-		//motorMove(2, 128, 0); //motor 2, half speed, left
-		
-		digitalWrite(RED_PIN, LOW);
-  	digitalWrite(GREEN_PIN, HIGH);
-  	digitalWrite(BLUE_PIN, HIGH);
 	}
 
 
@@ -201,7 +199,7 @@ void loop(){
    Serial.println("tracker left: " + horizontalInterval);
 	}
 
- 
+
 	Serial.flush();
 }
 
