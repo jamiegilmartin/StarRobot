@@ -60,6 +60,8 @@ void setup(){
 	while(!Serial);
 	Serial.begin(9600);
 
+  dht.begin();
+  
   //photo resistors
   pinMode(photoResistor_RL, INPUT);
   pinMode(photoResistor_FB, INPUT);
@@ -195,6 +197,28 @@ void loop(){
    
    Serial.println("tracker left: " + horizontalInterval);
 	}
+
+  if(serialValue == 9){
+    //check temp and humidity //https://github.com/adafruit/DHT-sensor-library/blob/master/examples/DHTtester/DHTtester.ino
+    // Reading temperature or humidity takes about 250 milliseconds!
+    // Sensor readings may also be up to 2 seconds 'old' (its a very slow sensor)
+    float h = dht.readHumidity();
+    // Read temperature as Celsius (the default)
+    float t = dht.readTemperature();
+    // Read temperature as Fahrenheit (isFahrenheit = true)
+    float f = dht.readTemperature(true);
+  
+    // Check if any reads failed and exit early (to try again).
+    if (isnan(h) || isnan(t) || isnan(f)) {
+      Serial.println("Failed to read from DHT sensor!");
+      return;
+    }
+
+    float hic = dht.computeHeatIndex(t, h, false);
+    Serial.println("HUMIDITY_" + String(h));
+    Serial.println("TEMP_" + String(t));
+    Serial.println("HEATINDEX_" + String(hic));
+  }
 
 
 	Serial.flush();
