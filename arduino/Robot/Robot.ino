@@ -215,9 +215,11 @@ void loop(){
     }
 
     float hic = dht.computeHeatIndex(t, h, false);
-    Serial.println("HUMIDITY_" + String(h));
-    Serial.println("TEMP_" + String(t));
-    Serial.println("HEATINDEX_" + String(hic));
+    Serial.println("HUMIDITY_" + String((int) h));
+    Serial.println("TEMP_" + String((int) t));
+    Serial.println("HEATINDEX_" + String((int) hic));
+    
+    delay(2000);
   }
 
 
