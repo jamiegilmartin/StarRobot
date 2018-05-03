@@ -1,3 +1,32 @@
+void motorForward() {
+    Serial.println("driver forward");
+    //forward
+    motorMove(1, 255, 0); //motor 1, full speed, left
+    motorMove(2, 255, 0); //motor 2, full speed, right
+}
+
+void motorBack() {
+    Serial.println("driver back");
+    //back
+    motorMove(1, 255, 1); //motor 1, full speed, right
+    motorMove(2, 255, 1); //motor 2, full speed, left
+}
+
+void motorRight() {
+    Serial.println("driver right");
+    //right
+    //motorMove(1, 128, 0); //motor 1, half speed, left
+    motorMove(2, 128, 0); //motor 2, half speed, left  
+}
+
+void motorLeft() {
+    Serial.println("driver left");
+    //left
+    motorMove(1, 128, 0); //motor 1, half speed, left
+    //motorMove(2, 128, 0); //motor 2, half speed, left
+}
+
+
 void motorMove(int motor, int speed, int direction){
 //Move specific motor at speed and direction
 //motor: 0 for B 1 for A

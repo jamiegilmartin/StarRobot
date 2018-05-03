@@ -1,8 +1,16 @@
+#include <DHT.h>
+
 #include <Servo.h>
 
 ////ping pins
 #define trigPin 13
 #define echoPin 12
+#define dhtPin 4
+
+#define dhtType DHT11
+
+DHT dht(dhtPin, dhtType);
+
 
 //photo resistors - voltage dividers with 10k ohm 
 const int photoResistor_RL = 0; //right | left
@@ -87,7 +95,7 @@ void loop(){
 	while(Serial.available() == 0 );
 	
 	//read input
-	int serialVal = Serial.read() - '0';
+	int serialValue = Serial.read() - '0';
 
   Ping();
 
@@ -128,39 +136,28 @@ void loop(){
   Serial.println("FB_" + String(FB_average));
 
 
-	//driver
-	//motor1 = left | motor 2 = right
-	if(serialVal == 0){
-		Serial.println("driver stop");
-		motorStop();
-	}
-	if(serialVal == 1){
-		Serial.println("driver forward");
-		//forward
-		motorMove(1, 255, 0); //motor 1, full speed, left
-		motorMove(2, 255, 0); //motor 2, full speed, right
-	}
-	if(serialVal == 2){
-		Serial.println("driver back");
-		//back
-		motorMove(1, 255, 1); //motor 1, full speed, right
-		motorMove(2, 255, 1); //motor 2, full speed, left
-	}
-	if(serialVal == 3){
-		Serial.println("driver right");
-		//right
-		//motorMove(1, 128, 0); //motor 1, half speed, left
-		motorMove(2, 128, 0); //motor 2, half speed, left
-	}
-	if(serialVal == 4){
-		Serial.println("driver left");
-		//left
-		motorMove(1, 128, 0); //motor 1, half speed, left
-	}
+  //driver
+  //motor1 = left | motor 2 = right
+  if(serialValue == 0){
+    Serial.println("driver stop");
+    motorStop();
+  }
+  if(serialValue == 1){
+    motorForward();
+  }
+  if(serialValue == 2){
+    motorBack(); 
+  }
+  if(serialValue == 3){
+    motorLeft();
+  }
+  if(serialValue == 4){
+    motorRight();
+  }
 
 
 		//tracker
-	if(serialVal == 5){
+	if(serialValue == 5){
 		
 		//down inverted
 		if(verticalInterval > 0){
@@ -170,7 +167,7 @@ void loop(){
    
     Serial.println("tracker up : " + verticalInterval);
 	}
-	if(serialVal == 6){
+	if(serialValue == 6){
 		//up inverted
 		if(verticalInterval < 180){
 			verticalServo.write( verticalInterval );
@@ -179,7 +176,7 @@ void loop(){
    
    Serial.println("tracker down : " + verticalInterval);
 	}
-	if(serialVal == 7){
+	if(serialValue == 7){
 		//left
 		if(horizontalInterval > 0){
 			horizontalServo.write( horizontalInterval );
@@ -188,7 +185,7 @@ void loop(){
    
    Serial.println("tracker right : " + horizontalInterval);
 	}
-	if(serialVal == 8){
+	if(serialValue == 8){
 		
 		//right
 		if(horizontalInterval < 180){
