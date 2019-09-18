@@ -3,7 +3,7 @@ StarRobot
 
 ###A *Solar* *Tracking* *Arduino* *Raspberrypi* Robot
 
-Because sometime we go years in between commits :laugh
+Because sometime we go years in between commits :laugh:
 ```
 npm i --save body-parser cookie-parser express express-handlebars express-session handlebars  mespeak morgan q  serialport  serve-favicon socket.io
 ```
