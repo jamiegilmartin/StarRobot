@@ -39,7 +39,7 @@
     "osc-min": "^1.1.1",
     "rxjs": "^5.4.3",
     "serialport": "^6.0.4",
-    "socket.io": "^2.0.3"
+    "socket.io": "^2.5.0"
   },
   "devDependencies": {
     "code": "^4.0.0",
